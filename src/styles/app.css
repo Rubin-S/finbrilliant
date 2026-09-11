@@ -1,0 +1,2038 @@
+/* ==========================================================================
+   FinBrilliant Design System & Modern UI/UX Tokens
+   High-End Quantitative Learning (Linear meets Wall Street & Brilliant)
+   Minimal, Modern, Accessible across Light and Dark Themes
+   ========================================================================== */
+
+/* Screen reader accessibility utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+:root {
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Base resets & typography */
+html {
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes confettiDrop {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: floatSubtle 4s ease-in-out infinite;
+}
+
+.confetti-piece {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 9999;
+  animation: confettiDrop linear forwards;
+}
+
+/* Accessibility: Full reduced motion compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Financial Terminal Grid Background Texture */
+.fin-grid-backdrop {
+  background-size: 32px 32px;
+  background-image: radial-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+}
+
+html.dark .fin-grid-backdrop {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+}
+
+/* Custom Sleek Scrollbar */
+html.dark {
+  scrollbar-color: #334155 #090d16;
+  scrollbar-width: thin;
+}
+
+html.light,
+body.theme-light {
+  scrollbar-color: #cbd5e1 #f8fafc;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+html.light ::-webkit-scrollbar-track,
+body.theme-light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+html.light ::-webkit-scrollbar-thumb,
+body.theme-light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover,
+body.theme-light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Tactile Micro-Interactions */
+button, input[type="range"], a {
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button:active, a:active {
+  transform: scale(0.98);
+}
+
+:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+/* Range Slider Modernization */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  outline: none;
+  background: #e2e8f0;
+}
+
+html.dark input[type="range"] {
+  background: #334155;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #10b981;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+html.dark input[type="range"]::-webkit-slider-thumb {
+  border-color: #0f172a;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(0.95);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #10b981;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+html.dark input[type="range"]::-moz-range-thumb {
+  border-color: #0f172a;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+/* Swiss Monochrome Slider Overrides for ALL ELSE EQUAL */
+.aee-root input[type="range"] {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.aee-root input[type="range"]::-webkit-slider-thumb {
+  background: #ffffff !important;
+  border: 2px solid #060709 !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6) !important;
+}
+
+.aee-root input[type="range"]::-moz-range-thumb {
+  background: #ffffff !important;
+  border: 2px solid #060709 !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Specific Slider Accent Variants */
+input[type="range"].accent-cyan-500::-webkit-slider-thumb {
+  background: #06b6d4;
+}
+input[type="range"].accent-cyan-500::-moz-range-thumb {
+  background: #06b6d4;
+}
+
+input[type="range"].accent-emerald-500::-webkit-slider-thumb {
+  background: #10b981;
+}
+input[type="range"].accent-emerald-500::-moz-range-thumb {
+  background: #10b981;
+}
+
+input[type="range"].accent-amber-500::-webkit-slider-thumb {
+  background: #f59e0b;
+}
+input[type="range"].accent-amber-500::-moz-range-thumb {
+  background: #f59e0b;
+}
+
+/* Surface Utility Classes */
+.card-modern {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card-modern:hover {
+  transform: translateY(-2px);
+}
+
+/* Glass Refraction Effect */
+.glass-panel {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html.light .glass-panel,
+body.theme-light .glass-panel {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 8px -1px rgba(0, 0, 0, 0.04);
+}
+
+/* Keyboard badge */
+.kbd-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(148, 163, 184, 0.1);
+  color: inherit;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* High-contrast Theme Definitions for Light and Dark Modes */
+html.light,
+html.light body,
+body.theme-light {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  color-scheme: light !important;
+}
+
+html.dark,
+html.dark body,
+body.theme-dark {
+  background-color: #020617 !important;
+  color: #f8fafc !important;
+  color-scheme: dark !important;
+}
+
+/* Page background textures */
+html.light .fin-grid-backdrop,
+body.theme-light .fin-grid-backdrop {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  background-image: radial-gradient(rgba(100, 116, 139, 0.12) 1px, transparent 1px) !important;
+}
+
+html.dark .fin-grid-backdrop,
+body.theme-dark .fin-grid-backdrop {
+  background-color: #020617 !important;
+  color: #f8fafc !important;
+  background-image: radial-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px) !important;
+}
+
+/* Card & Surface Containers in Light Mode */
+html.light .card-modern,
+html.light .course-card,
+html.light .glass-panel,
+body.theme-light .card-modern,
+body.theme-light .course-card,
+body.theme-light .glass-panel {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Card & Surface Containers in Dark Mode */
+html.dark .card-modern,
+html.dark .course-card,
+html.dark .glass-panel,
+body.theme-dark .card-modern,
+body.theme-dark .course-card,
+body.theme-dark .glass-panel {
+  background-color: rgba(15, 23, 42, 0.9) !important;
+  border-color: #1e293b !important;
+  color: #f8fafc !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Light mode overrides for widgets & interactive components */
+body.theme-light .widget-box,
+html.light .widget-box {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.theme-light .widget-box .bg-slate-950\/60,
+body.theme-light .widget-box .bg-slate-950\/70,
+body.theme-light .widget-box .bg-slate-950\/80,
+body.theme-light .widget-box .bg-slate-950,
+html.light .widget-box .bg-slate-950\/60,
+html.light .widget-box .bg-slate-950\/70,
+html.light .widget-box .bg-slate-950\/80,
+html.light .widget-box .bg-slate-950 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+body.theme-light .widget-box .bg-slate-900\/90,
+body.theme-light .widget-box .bg-slate-900\/80,
+body.theme-light .widget-box .bg-slate-900\/50,
+body.theme-light .widget-box .bg-slate-900,
+html.light .widget-box .bg-slate-900\/90,
+html.light .widget-box .bg-slate-900\/80,
+html.light .widget-box .bg-slate-900\/50,
+html.light .widget-box .bg-slate-900 {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+body.theme-light .widget-box .bg-slate-800\/40,
+body.theme-light .widget-box .bg-slate-800\/80,
+body.theme-light .widget-box .bg-slate-800,
+html.light .widget-box .bg-slate-800\/40,
+html.light .widget-box .bg-slate-800\/80,
+html.light .widget-box .bg-slate-800 {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+body.theme-light .widget-box .text-white,
+html.light .widget-box .text-white {
+  color: #0f172a !important;
+}
+
+body.theme-light .widget-box .text-slate-100,
+body.theme-light .widget-box .text-slate-200,
+html.light .widget-box .text-slate-100,
+html.light .widget-box .text-slate-200 {
+  color: #1e293b !important;
+}
+
+body.theme-light .widget-box .text-slate-300,
+body.theme-light .widget-box .text-slate-400,
+html.light .widget-box .text-slate-300,
+html.light .widget-box .text-slate-400 {
+  color: #475569 !important;
+}
+
+body.theme-light .widget-box .border-slate-800,
+body.theme-light .widget-box .border-slate-700,
+body.theme-light .widget-box .border-slate-800\/80,
+body.theme-light .widget-box .border-slate-700\/80,
+body.theme-light .widget-box .border-slate-700\/60,
+html.light .widget-box .border-slate-800,
+html.light .widget-box .border-slate-700,
+html.light .widget-box .border-slate-800\/80,
+html.light .widget-box .border-slate-700\/80,
+html.light .widget-box .border-slate-700\/60 {
+  border-color: #e2e8f0 !important;
+}
+
+body.theme-light .widget-box input[type="number"],
+html.light .widget-box input[type="number"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Ensure clean, high-contrast SVG display in light mode without overriding semantic colors */
+html.light svg text[fill="#94a3b8"],
+body.theme-light svg text[fill="#94a3b8"],
+html.light svg text[fill="#64748b"],
+body.theme-light svg text[fill="#64748b"] {
+  fill: #475569 !important;
+}
+
+html.light svg line[stroke="#334155"],
+body.theme-light svg line[stroke="#334155"] {
+  stroke: #e2e8f0 !important;
+}
+
+html.light svg line[stroke="#475569"],
+body.theme-light svg line[stroke="#475569"] {
+  stroke: #cbd5e1 !important;
+}
+
+html.light svg line[stroke="#64748b"],
+body.theme-light svg line[stroke="#64748b"] {
+  stroke: #94a3b8 !important;
+}
+
+html.light svg line[stroke="#e2e8f0"],
+body.theme-light svg line[stroke="#e2e8f0"] {
+  stroke: #94a3b8 !important;
+}
+
+/* Quantitative Boost Chart Adaptive Theming */
+.boost-chart .grid-line {
+  stroke: #e2e8f0;
+}
+html.dark .boost-chart .grid-line {
+  stroke: #1e293b;
+}
+
+.boost-chart .axis-line {
+  stroke: #cbd5e1;
+}
+html.dark .boost-chart .axis-line {
+  stroke: #334155;
+}
+
+.boost-chart .axis-text {
+  fill: #64748b;
+}
+html.dark .boost-chart .axis-text {
+  fill: #94a3b8;
+}
+
+.boost-chart .card-subtle {
+  fill: #f1f5f9;
+  stroke: #cbd5e1;
+}
+html.dark .boost-chart .card-subtle {
+  fill: #1e293b;
+  stroke: #334155;
+}
+
+/* ==========================================================================
+   FinBrilliant Reference Navbar & Command Palette Tokens
+   ========================================================================== */
+
+/* No scrollbar utility for mobile nav tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Navbar active indicator glow */
+.nav-indicator-glow {
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
+}
+
+/* Light Mode Overrides for FinBrilliant Top Navbar */
+html.light .fin-top-header,
+body.theme-light .fin-top-header {
+  background-color: rgba(255, 255, 255, 0.90) !important;
+  border-bottom-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
+}
+
+html.dark .fin-top-header,
+body.theme-dark .fin-top-header {
+  background-color: rgba(9, 13, 20, 0.90) !important;
+  border-bottom-color: #1e293b !important;
+  color: #f8fafc !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Floating Bottom Sticky Dock Navigation: Night & Day Adaptive */
+html.light .fin-bottom-dock,
+body.theme-light .fin-bottom-dock {
+  background: rgba(255, 255, 255, 0.94) !important;
+  color: #0f172a !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.9) inset !important;
+}
+
+html.dark .fin-bottom-dock,
+body.theme-dark .fin-bottom-dock {
+  background: rgba(9, 13, 20, 0.95) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) inset !important;
+}
+
+/* ==========================================================================
+   Apple HIG & Google M3 Segmented Navigation Capsule
+   ========================================================================== */
+
+.fin-bottom-dock .dock-tabs-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 9999px;
+}
+
+/* Individual Tab Buttons */
+.fin-bottom-dock .nav-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 9999px !important;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: color 0.16s ease, transform 0.12s ease;
+}
+
+.fin-bottom-dock .nav-btn:active {
+  transform: scale(0.96);
+}
+
+/* Tab Text Colors: Inactive */
+html.dark .fin-bottom-dock .nav-btn,
+body.theme-dark .fin-bottom-dock .nav-btn {
+  color: #94a3b8 !important;
+}
+
+html.dark .fin-bottom-dock .nav-btn:hover,
+body.theme-dark .fin-bottom-dock .nav-btn:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.light .fin-bottom-dock .nav-btn,
+body.theme-light .fin-bottom-dock .nav-btn {
+  color: #64748b !important;
+}
+
+html.light .fin-bottom-dock .nav-btn:hover,
+body.theme-light .fin-bottom-dock .nav-btn:hover {
+  color: #0f172a !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Tab Text Colors: Active Tab */
+html.dark .fin-bottom-dock .nav-btn.active-tab,
+body.theme-dark .fin-bottom-dock .nav-btn.active-tab {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+html.light .fin-bottom-dock .nav-btn.active-tab,
+body.theme-light .fin-bottom-dock .nav-btn.active-tab {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+/* 
+ * Active Capsule Indicator:
+ * Unified styling for both #dock-active-pill and standalone .nav-btn.active-tab
+ */
+
+/* Dark Mode: Apple Liquid Glass Capsule */
+html.dark #dock-active-pill,
+body.theme-dark #dock-active-pill,
+html.dark .dock-tabs-track:not(.has-sliding-pill) .nav-btn.active-tab,
+body.theme-dark .dock-tabs-track:not(.has-sliding-pill) .nav-btn.active-tab {
+  background: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.20) !important;
+  box-shadow:
+    0 2px 8px -1px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+  border-radius: 9999px !important;
+}
+
+/* Light Mode: Apple Segmented Control Elevated White Capsule */
+html.light #dock-active-pill,
+body.theme-light #dock-active-pill,
+html.light .dock-tabs-track:not(.has-sliding-pill) .nav-btn.active-tab,
+body.theme-light .dock-tabs-track:not(.has-sliding-pill) .nav-btn.active-tab {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow:
+    0 2px 6px -1px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 #ffffff !important;
+  border-radius: 9999px !important;
+}
+
+/* When sliding pill is active, the tab buttons stay transparent */
+.dock-tabs-track.has-sliding-pill .nav-btn {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Sliding indicator pill element */
+#dock-active-pill {
+  position: absolute;
+  top: 2px;
+  height: 32px;
+  border-radius: 9999px !important;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, width, opacity;
+  box-sizing: border-box;
+}
+
+html.light .fin-bottom-dock .dock-divider,
+body.theme-light .fin-bottom-dock .dock-divider {
+  background-color: #cbd5e1 !important;
+}
+
+html.light .fin-bottom-dock .theme-toggle,
+body.theme-light .fin-bottom-dock .theme-toggle {
+  color: #0f172a !important;
+}
+
+html.light .fin-bottom-dock .theme-toggle:hover,
+body.theme-light .fin-bottom-dock .theme-toggle:hover {
+  background-color: #f1f5f9 !important;
+}
+
+html.dark .fin-bottom-dock .dock-divider,
+body.theme-dark .fin-bottom-dock .dock-divider {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+html.dark .fin-bottom-dock .theme-toggle,
+body.theme-dark .fin-bottom-dock .theme-toggle {
+  color: #f8fafc !important;
+}
+
+html.dark .fin-bottom-dock .theme-toggle:hover,
+body.theme-dark .fin-bottom-dock .theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Bell Toggle Chime Pivot */
+.bell-toggle svg {
+  transform-origin: top center;
+}
+
+/* Theme Toggle Icon Pivot */
+.theme-toggle span {
+  display: inline-block;
+  transform-origin: center;
+}
+
+/* Search Trigger Tactile Lift */
+.fin-bottom-dock .search-trigger {
+  background-color: #10b981 !important;
+  color: #022c22 !important;
+  border-color: transparent !important;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease;
+}
+
+.fin-bottom-dock .search-trigger:hover {
+  background-color: #34d399 !important;
+  color: #022c22 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+}
+
+.fin-bottom-dock .search-trigger:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.fin-bottom-dock .search-trigger span {
+  color: #022c22 !important;
+}
+
+.fin-bottom-dock .search-trigger kbd {
+  background-color: rgba(2, 44, 34, 0.18) !important;
+  color: #022c22 !important;
+  border-color: rgba(2, 44, 34, 0.25) !important;
+}
+
+html.light .fin-navbar .brand-text,
+body.theme-light .fin-navbar .brand-text {
+  color: #0f172a !important;
+}
+
+html.light .fin-navbar .tagline-text,
+body.theme-light .fin-navbar .tagline-text {
+  color: #64748b !important;
+}
+
+html.light .fin-navbar .search-trigger,
+body.theme-light .fin-navbar .search-trigger {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+html.light .fin-navbar .search-trigger:hover,
+body.theme-light .fin-navbar .search-trigger:hover {
+  background-color: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+}
+
+html.light .fin-navbar .search-trigger span,
+body.theme-light .fin-navbar .search-trigger span {
+  color: #64748b !important;
+}
+
+html.light .fin-navbar .search-trigger kbd,
+body.theme-light .fin-navbar .search-trigger kbd {
+  background-color: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+html.light .fin-navbar .xp-badge,
+body.theme-light .fin-navbar .xp-badge {
+  color: #0f172a !important;
+}
+
+html.light .fin-navbar .xp-badge span,
+body.theme-light .fin-navbar .xp-badge span {
+  color: #0f172a !important;
+}
+
+html.light .fin-navbar .xp-badge svg,
+body.theme-light .fin-navbar .xp-badge svg {
+  color: #475569 !important;
+}
+
+html.light .fin-navbar .xp-badge .bg-slate-800,
+body.theme-light .fin-navbar .xp-badge .bg-slate-800 {
+  background-color: #e2e8f0 !important;
+}
+
+html.light .fin-navbar .nav-btn:not(.text-emerald-400),
+body.theme-light .fin-navbar .nav-btn:not(.text-emerald-400) {
+  color: #64748b !important;
+}
+
+html.light .fin-navbar .nav-btn:not(.text-emerald-400):hover,
+body.theme-light .fin-navbar .nav-btn:not(.text-emerald-400):hover {
+  color: #0f172a !important;
+}
+
+html.light .fin-navbar .text-emerald-400,
+body.theme-light .fin-navbar .text-emerald-400 {
+  color: #059669 !important;
+}
+
+html.light .fin-navbar .bell-toggle,
+body.theme-light .fin-navbar .bell-toggle {
+  color: #64748b !important;
+}
+
+html.light .fin-navbar .bell-toggle:hover,
+body.theme-light .fin-navbar .bell-toggle:hover {
+  color: #0f172a !important;
+  background-color: #f1f5f9 !important;
+}
+
+html.light .fin-navbar .profile-toggle .bg-\[\#1e293b\],
+body.theme-light .fin-navbar .profile-toggle .bg-\[\#1e293b\] {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light #profile-dropdown,
+body.theme-light #profile-dropdown,
+html.light #notifications-popover,
+body.theme-light #notifications-popover {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light #profile-dropdown .bg-slate-900\/80,
+body.theme-light #profile-dropdown .bg-slate-900\/80,
+html.light #notifications-popover .bg-slate-900\/80,
+body.theme-light #notifications-popover .bg-slate-900\/80 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light #profile-dropdown .text-slate-200,
+body.theme-light #profile-dropdown .text-slate-200,
+html.light #notifications-popover .text-slate-200,
+body.theme-light #notifications-popover .text-slate-200 {
+  color: #0f172a !important;
+}
+
+html.light #profile-dropdown .text-slate-400,
+body.theme-light #profile-dropdown .text-slate-400,
+html.light #notifications-popover .text-slate-400,
+body.theme-light #notifications-popover .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light #profile-dropdown button:hover,
+body.theme-light #profile-dropdown button:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+html.light #palette-modal .bg-\[\#111923\],
+body.theme-light #palette-modal .bg-\[\#111923\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html.light #palette-modal .bg-slate-900\/60,
+body.theme-light #palette-modal .bg-slate-900\/60,
+html.light #palette-modal .bg-slate-900\/80,
+body.theme-light #palette-modal .bg-slate-900\/80 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light #palette-input,
+body.theme-light #palette-input {
+  color: #0f172a !important;
+}
+
+html.light #palette-modal .palette-item,
+body.theme-light #palette-modal .palette-item {
+  color: #334155 !important;
+}
+
+html.light #palette-modal .palette-item:hover,
+body.theme-light #palette-modal .palette-item:hover {
+  background-color: #f1f5f9 !important;
+}
+
+html.light #palette-modal .palette-item.bg-slate-800\/90,
+body.theme-light #palette-modal .palette-item.bg-slate-800\/90 {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html.light #palette-modal .palette-item .text-slate-200,
+body.theme-light #palette-modal .palette-item .text-slate-200 {
+  color: #0f172a !important;
+}
+
+html.light #palette-modal .palette-item .text-slate-400,
+body.theme-light #palette-modal .palette-item .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* ==========================================================================
+   Floating Bottom Dock Scroll State (Smooth Ride Down & Rise Up)
+   ========================================================================== */
+#fin-bottom-dock-container {
+  will-change: transform;
+}
+
+#fin-bottom-dock-container.dock-hidden {
+  pointer-events: none;
+}
+
+#fin-bottom-dock-container.dock-hidden * {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   ALL ELSE EQUAL: Cinematic Scroll Experience & Editorial Design System
+   ========================================================================== */
+
+.aee-root {
+  background-color: #060709;
+  color: #f8fafc;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+.aee-editorial-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0.01em;
+}
+
+.aee-mono-white {
+  color: #ffffff;
+}
+
+.aee-mono-grid-line {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Header & Navigation */
+.aee-nav-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  z-index: 50;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(6, 7, 9, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Pinned 4-Corner Framing */
+.aee-corner-tag {
+  position: fixed;
+  z-index: 40;
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  color: #64748b;
+  pointer-events: none;
+  max-width: 140px;
+  transition: opacity 0.4s ease;
+}
+
+.aee-corner-tl { top: 76px; left: 32px; }
+.aee-corner-tr { top: 76px; right: 32px; text-align: right; }
+.aee-corner-bl { bottom: 32px; left: 32px; }
+.aee-corner-br { bottom: 32px; right: 32px; text-align: right; }
+
+@media (max-width: 768px) {
+  .aee-corner-tag { display: none; }
+}
+
+/* Pinned Cinematic Stage */
+.aee-stage-track {
+  position: relative;
+  width: 100%;
+  height: 850vh;
+}
+
+.aee-stage-viewport {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #060709;
+  perspective: 1200px;
+}
+
+/* 3D Perspective Camera Rig Container */
+.aee-camera-rig {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Individual Scene Layers inside 3D Camera Rig */
+.aee-scene-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: opacity, transform;
+  filter: none !important;
+}
+
+.aee-scene-layer.is-interactive {
+  pointer-events: auto;
+}
+
+/* Persistent Stage Editorial Layer:
+   Single continuous canvas editorial elements that stay solid and never vanish. */
+.aee-stage-editorial {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+#aee-stage-headline,
+#aee-stage-footer-title {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: font-size, letter-spacing;
+  transition: font-size 0.2s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#aee-stage-footer-sub {
+  transition: font-size 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Editorial Typographic Blocks (Act Eyebrows, Headings, Subtitles) */
+.aee-scene-editorial {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: opacity, transform;
+}
+
+/* Hide duplicate scene-level headers and footers to ensure a single persistent headline */
+.aee-scene-editorial.aee-scene-header,
+.aee-scene-editorial.aee-scene-footer {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* Persistent Morphing Threads Layer & Elements:
+   Direct in-place element morphing and typographic character scrambling. */
+.aee-morph-threads-layer,
+.aee-morph-thread {
+  display: none !important;
+  pointer-events: none;
+}
+
+/* Center Editorial Vertical Connectors */
+.aee-vertical-connector {
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 14px auto;
+}
+
+/* Order Book Ladder Layout */
+.aee-ladder-row {
+  display: grid;
+  grid-template-columns: 80px 60px;
+  gap: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Swiss Typographic Print Aesthetic & Spatial Morphing Utilities
+   ========================================================================== */
+
+.aee-swiss-grid {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.aee-swiss-hairline {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.aee-swiss-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.aee-swiss-metric {
+  font-family: 'JetBrains Mono', monospace;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Reduced Motion Support: Keep scrubbed transitions instant without disrupting pinned timeline */
+html.reduce-motion {
+  .aee-camera-rig,
+  .aee-scene-layer,
+  .aee-morph-thread,
+  .aee-scene-editorial {
+    transform: none !important;
+    filter: none !important;
+    transition: opacity 0.05s ease !important;
+  }
+  .aee-morph-threads-layer,
+  .aee-morph-thread {
+    display: none !important;
+  }
+  .aee-flow-stream,
+  .aee-flow-stream-rev {
+    animation: none !important;
+  }
+  .aee-soliton {
+    display: none !important;
+  }
+}
+
+/* Living Metabolism Blueprint Conduits & Flow Animations (Scene 4) */
+@keyframes metabolicFlowForward {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes metabolicFlowReverse {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 24;
+  }
+}
+
+/* Layer 1: Passive Blueprint Conduit Tracks */
+.aee-conduit-track {
+  stroke: rgba(255, 255, 255, 0.07);
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  pointer-events: none;
+  transition: stroke 0.3s ease;
+}
+
+/* Layer 2: Directed Base Vector Streams */
+.aee-stream-base {
+  stroke: rgba(255, 255, 255, 0.38);
+  stroke-width: 1.2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  pointer-events: none;
+  transition: stroke 0.25s ease, opacity 0.25s ease;
+}
+
+/* Active flowing dash streams */
+.aee-flow-stream {
+  stroke: rgba(255, 255, 255, 0.7);
+  stroke-width: 1.2px;
+  stroke-dasharray: 4 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  pointer-events: none;
+  animation: metabolicFlowForward 1.4s linear infinite;
+}
+
+.aee-flow-stream-rev {
+  stroke: rgba(255, 255, 255, 0.7);
+  stroke-width: 1.2px;
+  stroke-dasharray: 4 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  pointer-events: none;
+  animation: metabolicFlowReverse 1.4s linear infinite;
+}
+
+/* Layer 3: Luminescent Kinetic Soliton Wave Packets */
+.aee-soliton {
+  pointer-events: none;
+  will-change: transform;
+}
+
+.aee-soliton-core {
+  fill: #ffffff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
+}
+
+.aee-soliton-halo {
+  fill: rgba(255, 255, 255, 0.22);
+}
+
+/* Vector Labels */
+.aee-conduit-label {
+  fill: #94a3b8;
+  font-size: 8.5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+  user-select: none;
+  transition: fill 0.25s ease;
+}
+
+/* Node Groups and Interactive Adjacency Focus */
+.aee-node {
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.25s ease;
+}
+
+.aee-node:focus-visible .aee-node-box {
+  stroke: #ffffff !important;
+  stroke-width: 1.8px !important;
+}
+
+.aee-node-box {
+  transition: stroke 0.25s ease, fill 0.25s ease, filter 0.25s ease;
+  cursor: pointer;
+}
+
+.aee-node:hover .aee-node-box,
+.aee-node.is-focused .aee-node-box {
+  stroke: rgba(255, 255, 255, 0.95) !important;
+  fill: rgba(255, 255, 255, 0.1) !important;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.35));
+}
+
+/* Incident Vector Illumination & Dimming */
+.aee-vector-conduit {
+  transition: opacity 0.25s ease;
+}
+
+.aee-vector-conduit.is-highlighted .aee-stream-base {
+  stroke: rgba(255, 255, 255, 0.95) !important;
+  stroke-width: 1.6px !important;
+}
+
+.aee-vector-conduit.is-highlighted .aee-conduit-track {
+  stroke: rgba(255, 255, 255, 0.18) !important;
+}
+
+.aee-vector-conduit.is-highlighted .aee-conduit-label {
+  fill: #ffffff !important;
+}
+
+.aee-vector-conduit.is-dimmed {
+  opacity: 0.15 !important;
+}
+
+.aee-node.is-dimmed {
+  opacity: 0.15 !important;
+}
+
+.aee-top-injection,
+.aee-markets-sublist {
+  transition: opacity 0.25s ease;
+}
+
+/* ==========================================================================
+   Bauhaus Optical Contrast Aperture: Monochrome Theme Toggle
+   ========================================================================== */
+.aee-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #f8fafc;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aee-theme-toggle:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.aee-theme-toggle:active {
+  transform: scale(0.96);
+}
+
+.aee-theme-aperture {
+  transform-origin: center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Archival Swiss Broadsheet Theme: Universal Light Mode for Landing Page
+   ========================================================================== */
+html.light .aee-root,
+body.theme-light .aee-root,
+html.light .aee-stage-viewport,
+body.theme-light .aee-stage-viewport {
+  background-color: #fafaf9 !important;
+  color: #090d16 !important;
+}
+
+html.light .aee-nav-fixed,
+body.theme-light .aee-nav-fixed {
+  background: rgba(250, 250, 249, 0.92) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .aee-theme-toggle {
+  color: #090d16 !important;
+  border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+html.light .aee-theme-toggle:hover {
+  border-color: rgba(15, 23, 42, 0.5) !important;
+  background: rgba(15, 23, 42, 0.05) !important;
+}
+
+html.light #aee-theme-label {
+  color: #475569 !important;
+}
+
+html.light .aee-theme-toggle:hover #aee-theme-label {
+  color: #090d16 !important;
+}
+
+html.light .aee-corner-tag,
+body.theme-light .aee-corner-tag {
+  color: #64748b !important;
+}
+
+/* Light Mode Typography */
+html.light .aee-root .text-white,
+body.theme-light .aee-root .text-white,
+html.light .aee-stage-viewport .text-white,
+body.theme-light .aee-stage-viewport .text-white,
+html.light #aee-stage-headline,
+html.light #aee-stage-footer-title,
+html.light #aee-stage-footer-sub {
+  color: #090d16 !important;
+}
+
+html.light .aee-root .text-slate-300,
+body.theme-light .aee-root .text-slate-300,
+html.light .aee-stage-viewport .text-slate-300,
+body.theme-light .aee-stage-viewport .text-slate-300 {
+  color: #334155 !important;
+}
+
+html.light .aee-root .text-slate-400,
+body.theme-light .aee-root .text-slate-400,
+html.light .aee-stage-viewport .text-slate-400,
+body.theme-light .aee-stage-viewport .text-slate-400,
+html.light #aee-stage-eyebrow,
+html.light #aee-stage-sub {
+  color: #64748b !important;
+}
+
+html.light .aee-root .text-slate-500,
+body.theme-light .aee-root .text-slate-500,
+html.light .aee-stage-viewport .text-slate-500,
+body.theme-light .aee-stage-viewport .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Hairlines, Borders and Dividers */
+html.light .aee-root .border-white\/10,
+html.light .aee-root .border-white\/15,
+html.light .aee-root .border-white\/20,
+html.light .aee-root .border-white\/30,
+html.light .aee-root .border-white\/40,
+html.light .aee-stage-viewport .border-white\/10,
+html.light .aee-stage-viewport .border-white\/15,
+html.light .aee-stage-viewport .border-white\/20,
+html.light .aee-stage-viewport .border-white\/30,
+html.light .aee-stage-viewport .border-white\/40 {
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+html.light .aee-stage-viewport .border-white\/60 {
+  border-color: rgba(15, 23, 42, 0.5) !important;
+}
+
+html.light .aee-root .bg-white\/20,
+html.light .aee-root .bg-white\/10,
+html.light .aee-stage-viewport .bg-white\/20,
+html.light .aee-stage-viewport .bg-white\/10,
+html.light #aee-stage-divider,
+html.light .aee-vertical-connector,
+html.light .aee-swiss-hairline {
+  background-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+html.light .aee-stage-viewport .bg-white\/30 {
+  background-color: rgba(15, 23, 42, 0.25) !important;
+}
+
+html.light .aee-stage-viewport .text-white\/40 {
+  color: rgba(15, 23, 42, 0.4) !important;
+}
+
+/* Card Backgrounds */
+html.light .aee-swiss-grid,
+html.light .aee-stage-viewport .bg-white\/\[0\.02\],
+html.light .aee-stage-viewport .bg-white\/\[0\.015\],
+html.light .aee-stage-viewport .bg-white\/\[0\.01\],
+html.light .aee-stage-viewport .bg-white\/\[0\.03\],
+html.light #sandbox-content,
+html.light .aee-root section .bg-white\/\[0\.01\] {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+}
+
+/* Scene 8 Curriculum Atlas in Light Mode */
+html.light #aee-s8-curriculum-card {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+html.light .aee-stage-viewport .bg-\[\#060709\]\/80 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light #aee-s8-curriculum-card .bg-white\/\[0\.04\] {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+/* Interactive Sandbox in Light Mode */
+html.light #sandbox-content .bg-\[\#060709\] {
+  background-color: #f8fafc !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light #sandbox-content .border-b.border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light #tab-rate.bg-white,
+html.light #tab-dcf.bg-white,
+html.light #tab-vol.bg-white {
+  background-color: #090d16 !important;
+  color: #ffffff !important;
+  border-color: #090d16 !important;
+}
+
+html.light #sandbox-content input[type="range"] {
+  background: #e2e8f0 !important;
+  accent-color: #090d16 !important;
+}
+
+/* CTAs and Realm Action Buttons in Light Mode */
+html.light #cta-start-btn {
+  background-color: #090d16 !important;
+  color: #ffffff !important;
+}
+
+html.light #cta-start-btn:hover {
+  background-color: #1e293b !important;
+}
+
+html.light #cta-grill-btn {
+  border-color: rgba(15, 23, 42, 0.25) !important;
+  color: #090d16 !important;
+}
+
+html.light #cta-grill-btn:hover {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .realm-btn {
+  border-color: rgba(15, 23, 42, 0.2) !important;
+  color: #334155 !important;
+}
+
+html.light .realm-btn:hover {
+  border-color: #090d16 !important;
+  color: #090d16 !important;
+  background-color: rgba(15, 23, 42, 0.03) !important;
+}
+
+/* ==========================================================================
+   ALL ELSE EQUAL: HIGH CONTRAST SWISS LIGHT MODE ARCHITECTURE
+   Pure Swiss broadsheet: warm paper white #fafaf9 and carbon ink #090d16
+   ========================================================================== */
+
+/* Universal SVG vector lines, curves, and nodes in light mode */
+html.light .aee-stage-viewport svg line[stroke="#ffffff"],
+html.light .aee-stage-viewport svg line[stroke="white"],
+html.light .aee-stage-viewport svg path[stroke="#ffffff"],
+html.light .aee-stage-viewport svg path[stroke="white"] {
+  stroke: #090d16 !important;
+}
+
+html.light .aee-stage-viewport svg circle[fill="#ffffff"],
+html.light .aee-stage-viewport svg circle[fill="white"] {
+  fill: #090d16 !important;
+}
+
+html.light .aee-stage-viewport svg text[fill="#ffffff"],
+html.light .aee-stage-viewport svg text[fill="white"] {
+  fill: #090d16 !important;
+}
+
+html.light .aee-stage-viewport svg text[fill="#64748b"] {
+  fill: #334155 !important;
+  font-weight: 500 !important;
+}
+
+html.light .aee-stage-viewport svg text[fill="#cbd5e1"],
+html.light .aee-stage-viewport svg text[fill="#94a3b8"] {
+  fill: #475569 !important;
+}
+
+/* Scene 2: 10Y Bond Convexity Repricing */
+html.light #aee-s2-svg line[stroke="rgba(255,255,255,0.2)"],
+html.light #aee-s2-svg line[stroke="rgba(255, 255, 255, 0.2)"],
+html.light #aee-s2-svg line[stroke="rgba(255,255,255,0.3)"],
+html.light #aee-s2-svg line[stroke="rgba(255, 255, 255, 0.3)"] {
+  stroke: rgba(15, 23, 42, 0.25) !important;
+}
+
+html.light #aee-s2-svg text {
+  fill: #334155 !important;
+}
+
+html.light #aee-s2-svg text[font-weight="bold"] {
+  fill: #090d16 !important;
+  font-weight: 700 !important;
+}
+
+html.light #aee-s2-curve {
+  stroke: #090d16 !important;
+}
+
+/* Scene 3: Second-Order Consequences & Causal Branching Tree */
+html.light #aee-s3-root {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.22) !important;
+  color: #090d16 !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light .aee-s3-node {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.18) !important;
+  color: #090d16 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light .aee-s3-node span {
+  color: #475569 !important;
+}
+
+html.light #aee-s3-tree-svg line {
+  stroke: rgba(15, 23, 42, 0.35) !important;
+  stroke-width: 1.5px !important;
+}
+
+/* Scene 4: Macroeconomic Living Metabolism */
+html.light #aee-s4-card-frame,
+html.light .aee-s4-card-frame,
+html.light #aee-scene-4 svg rect[fill="#0a0b0d"] {
+  fill: #ffffff !important;
+  stroke: rgba(15, 23, 42, 0.12) !important;
+}
+
+html.light .aee-node-box {
+  stroke: rgba(15, 23, 42, 0.22) !important;
+  fill: #ffffff !important;
+}
+
+html.light .aee-node text {
+  fill: #090d16 !important;
+  font-weight: 700 !important;
+}
+
+html.light .aee-markets-sublist text {
+  fill: #334155 !important;
+  font-weight: 600 !important;
+}
+
+html.light .aee-markets-sublist line {
+  stroke: rgba(15, 23, 42, 0.35) !important;
+}
+
+html.light .aee-top-injection line {
+  stroke: rgba(15, 23, 42, 0.35) !important;
+}
+
+html.light .aee-soliton-core {
+  fill: #090d16 !important;
+  filter: drop-shadow(0 0 3px rgba(15, 23, 42, 0.4)) !important;
+}
+
+html.light .aee-soliton-halo {
+  fill: rgba(15, 23, 42, 0.15) !important;
+}
+
+html.light #arrow-white path,
+html.light #arrow-dashed path,
+html.light #arrow-white polygon,
+html.light #arrow-dashed polygon {
+  fill: #090d16 !important;
+}
+
+html.light .aee-conduit-track {
+  stroke: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light .aee-stream-base {
+  stroke: rgba(15, 23, 42, 0.45) !important;
+}
+
+html.light .aee-flow-stream,
+html.light .aee-flow-stream-rev {
+  stroke: rgba(15, 23, 42, 0.85) !important;
+}
+
+html.light .aee-node:hover .aee-node-box,
+html.light .aee-node.is-focused .aee-node-box {
+  stroke: #090d16 !important;
+  fill: rgba(15, 23, 42, 0.05) !important;
+  filter: drop-shadow(0 0 8px rgba(15, 23, 42, 0.12)) !important;
+}
+
+html.light .aee-conduit-label {
+  fill: #334155 !important;
+  font-weight: 600 !important;
+}
+
+html.light .aee-vector-conduit.is-highlighted .aee-stream-base {
+  stroke: #090d16 !important;
+}
+
+html.light .aee-vector-conduit.is-highlighted .aee-conduit-track {
+  stroke: rgba(15, 23, 42, 0.22) !important;
+}
+
+html.light .aee-vector-conduit.is-highlighted .aee-conduit-label {
+  fill: #090d16 !important;
+}
+
+/* Scene 5: Order Book Auction */
+html.light #aee-s5-card {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06) !important;
+}
+
+html.light #aee-s5-card .border-white\/30 {
+  border-color: rgba(15, 23, 42, 0.2) !important;
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light #aee-s5-price {
+  color: #090d16 !important;
+}
+
+/* Scene 6: The Anatomy of Value & DCF Sensitivity */
+html.light .aee-s6-card,
+body.theme-light .aee-s6-card {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.14) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+}
+
+html.light #aee-s6-grid .text-white,
+body.theme-light #aee-s6-grid .text-white {
+  color: #090d16 !important;
+}
+
+html.light #aee-s6-grid .text-slate-300,
+body.theme-light #aee-s6-grid .text-slate-300 {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+html.light #aee-s6-grid .text-slate-400,
+body.theme-light #aee-s6-grid .text-slate-400 {
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+html.light #aee-s6-grid .text-slate-500,
+body.theme-light #aee-s6-grid .text-slate-500 {
+  color: #475569 !important;
+  font-weight: 500 !important;
+}
+
+html.light #aee-s6-growth-badge,
+html.light #aee-s6-rate-badge,
+body.theme-light #aee-s6-growth-badge,
+body.theme-light #aee-s6-rate-badge {
+  color: #090d16 !important;
+  border-color: rgba(15, 23, 42, 0.22) !important;
+  background-color: rgba(15, 23, 42, 0.05) !important;
+}
+
+html.light .aee-s6-tier,
+body.theme-light .aee-s6-tier {
+  background-color: rgba(15, 23, 42, 0.03) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+html.light .aee-s6-tier .text-slate-400,
+body.theme-light .aee-s6-tier .text-slate-400 {
+  color: #475569 !important;
+}
+
+html.light .aee-s6-tier .text-white,
+body.theme-light .aee-s6-tier .text-white {
+  color: #090d16 !important;
+}
+
+html.light #aee-s6-formula-pill,
+body.theme-light #aee-s6-formula-pill {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(15, 23, 42, 0.16) !important;
+}
+
+html.light #aee-s6-grid svg line[stroke="rgba(255,255,255,0.2)"],
+html.light #aee-s6-grid svg line[stroke="rgba(255, 255, 255, 0.2)"],
+body.theme-light #aee-s6-grid svg line[stroke="rgba(255,255,255,0.2)"],
+body.theme-light #aee-s6-grid svg line[stroke="rgba(255, 255, 255, 0.2)"] {
+  stroke: rgba(15, 23, 42, 0.22) !important;
+}
+
+html.light #aee-s6-growth-proj-x,
+html.light #aee-s6-growth-proj-y,
+html.light #aee-s6-rate-proj-x,
+html.light #aee-s6-rate-proj-y,
+body.theme-light #aee-s6-growth-proj-x,
+body.theme-light #aee-s6-growth-proj-y,
+body.theme-light #aee-s6-rate-proj-x,
+body.theme-light #aee-s6-rate-proj-y {
+  stroke: rgba(15, 23, 42, 0.35) !important;
+}
+
+html.light #aee-s6-growth-curve,
+html.light #aee-s6-rate-curve,
+body.theme-light #aee-s6-growth-curve,
+body.theme-light #aee-s6-rate-curve {
+  stroke: #090d16 !important;
+  stroke-width: 1.8px !important;
+}
+
+html.light #aee-s6-grid svg circle,
+body.theme-light #aee-s6-grid svg circle {
+  fill: #090d16 !important;
+}
+
+html.light #aee-s6-grid svg text,
+body.theme-light #aee-s6-grid svg text {
+  fill: #334155 !important;
+  font-weight: 600 !important;
+}
+
+html.light #aee-s6-grid svg text[font-weight="bold"],
+body.theme-light #aee-s6-grid svg text[font-weight="bold"] {
+  fill: #090d16 !important;
+  font-weight: 700 !important;
+}
+
+/* Scene 7: Quantitative Risk & Greeks */
+html.light #aee-s7-grid .text-slate-300,
+body.theme-light #aee-s7-grid .text-slate-300 {
+  color: #090d16 !important;
+  font-weight: 600 !important;
+}
+
+html.light #aee-s7-grid .text-slate-400,
+body.theme-light #aee-s7-grid .text-slate-400 {
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+html.light #aee-s7-grid .text-slate-500,
+body.theme-light #aee-s7-grid .text-slate-500 {
+  color: #475569 !important;
+  font-weight: 500 !important;
+}
+
+html.light #aee-s7-time-readout,
+html.light #aee-s7-bell-metric,
+html.light #aee-s7-option-readout,
+body.theme-light #aee-s7-time-readout,
+body.theme-light #aee-s7-bell-metric,
+body.theme-light #aee-s7-option-readout {
+  color: #090d16 !important;
+  border-color: rgba(15, 23, 42, 0.22) !important;
+  background-color: rgba(15, 23, 42, 0.05) !important;
+}
+
+html.light #aee-s7-grid svg line[stroke="rgba(255,255,255,0.2)"],
+html.light #aee-s7-grid svg line[stroke="rgba(255, 255, 255, 0.2)"],
+body.theme-light #aee-s7-grid svg line[stroke="rgba(255,255,255,0.2)"],
+body.theme-light #aee-s7-grid svg line[stroke="rgba(255, 255, 255, 0.2)"] {
+  stroke: rgba(15, 23, 42, 0.22) !important;
+}
+
+html.light #aee-s7-time-cursor,
+html.light #aee-s7-proj-x,
+html.light #aee-s7-proj-y,
+body.theme-light #aee-s7-time-cursor,
+body.theme-light #aee-s7-proj-x,
+body.theme-light #aee-s7-proj-y {
+  stroke: rgba(15, 23, 42, 0.35) !important;
+}
+
+html.light #aee-s7-bs-curve,
+body.theme-light #aee-s7-bs-curve {
+  stroke: rgba(15, 23, 42, 0.4) !important;
+}
+
+html.light #aee-s7-bell-ci,
+body.theme-light #aee-s7-bell-ci {
+  fill: rgba(15, 23, 42, 0.14) !important;
+}
+
+html.light #aee-s7-bell-fill,
+body.theme-light #aee-s7-bell-fill {
+  fill: rgba(15, 23, 42, 0.06) !important;
+}
+
+html.light #aee-s7-grid svg circle,
+body.theme-light #aee-s7-grid svg circle {
+  fill: #090d16 !important;
+}
+
+html.light #aee-s7-grid svg text,
+body.theme-light #aee-s7-grid svg text {
+  fill: #334155 !important;
+  font-weight: 600 !important;
+}
+
+html.light #aee-s7-grid svg text[font-weight="bold"],
+body.theme-light #aee-s7-grid svg text[font-weight="bold"] {
+  fill: #090d16 !important;
+  font-weight: 700 !important;
+}
+
+html.light #aee-s7-grid svg path.aee-s7-path[stroke="#ffffff"],
+body.theme-light #aee-s7-grid svg path.aee-s7-path[stroke="#ffffff"] {
+  stroke: #090d16 !important;
+  stroke-width: 1.5px !important;
+}
+
+html.light #aee-s7-grid svg path.aee-s7-path[stroke="rgba(255,255,255,0.35)"],
+html.light #aee-s7-grid svg path.aee-s7-path[stroke="rgba(255, 255, 255, 0.35)"],
+body.theme-light #aee-s7-grid svg path.aee-s7-path[stroke="rgba(255,255,255,0.35)"],
+body.theme-light #aee-s7-grid svg path.aee-s7-path[stroke="rgba(255, 255, 255, 0.35)"] {
+  stroke: rgba(15, 23, 42, 0.35) !important;
+  stroke-width: 1.2px !important;
+}
+
+html.light #aee-s7-grid svg path[stroke="#ffffff"],
+body.theme-light #aee-s7-grid svg path[stroke="#ffffff"] {
+  stroke: #090d16 !important;
+  stroke-width: 1.5px !important;
+}
+
+html.light #aee-s7-grid svg line[stroke="rgba(255,255,255,0.4)"],
+html.light #aee-s7-grid svg line[stroke="rgba(255, 255, 255, 0.4)"],
+body.theme-light #aee-s7-grid svg line[stroke="rgba(255,255,255,0.4)"],
+body.theme-light #aee-s7-grid svg line[stroke="rgba(255, 255, 255, 0.4)"] {
+  stroke: rgba(15, 23, 42, 0.45) !important;
+}
+
+html.light #aee-s7-grid svg line[stroke="#ffffff"],
+body.theme-light #aee-s7-grid svg line[stroke="#ffffff"] {
+  stroke: #090d16 !important;
+  stroke-width: 1.8px !important;
+}
+
+/* Scene 8 Curriculum Atlas & Final CTA */
+html.light #aee-s8-curriculum-card {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+html.light #aee-s8-curriculum-card .text-white {
+  color: #090d16 !important;
+}
+
+html.light #aee-s8-curriculum-card .text-slate-400 {
+  color: #475569 !important;
+}
+
+/* Scene 8 Brand Showcase */
+html.light #aee-s8-brand-cta .text-white {
+  color: #090d16 !important;
+}
+
+html.light #aee-s8-brand-cta .aee-editorial-serif {
+  color: #334155 !important;
+}
+
+html.light #aee-s8-brand-cta p {
+  color: #475569 !important;
+}
+
+html.light #aee-s8-brand-cta #aee-explore-btn {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.22) !important;
+  color: #090d16 !important;
+}
+
+html.light #aee-s8-brand-cta #aee-explore-btn:hover {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+  border-color: #090d16 !important;
+}
+
+html.light #aee-s8-brand-cta #aee-enter-btn {
+  background-color: #090d16 !important;
+  color: #ffffff !important;
+}
+
+html.light #aee-s8-brand-cta #aee-enter-btn:hover {
+  background-color: #1e293b !important;
+}
+
+html.light #aee-final-cta {
+  background-color: transparent !important;
+  border-top-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light #aee-final-cta .text-white {
+  color: #090d16 !important;
+}
+
+html.light #aee-final-cta .aee-editorial-serif {
+  color: #334155 !important;
+}
+
+html.light #aee-final-cta p {
+  color: #475569 !important;
+}
+
+html.light #aee-final-cta #cta-grill-btn {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.22) !important;
+  color: #090d16 !important;
+}
+
+html.light #aee-final-cta #cta-grill-btn:hover {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+  border-color: #090d16 !important;
+}
+
+/* Landing Page Footer */
+html.light #aee-footer,
+html.light footer.aee-footer,
+html.light .aee-root footer {
+  background-color: #fafaf9 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.1) !important;
+  color: #64748b !important;
+}
+
+html.light #aee-footer a,
+html.light footer.aee-footer a,
+html.light .aee-root footer a {
+  color: #334155 !important;
+}
+
+html.light #aee-footer a:hover,
+html.light footer.aee-footer a:hover,
+html.light .aee-root footer a:hover {
+  color: #090d16 !important;
+}
+
+
+

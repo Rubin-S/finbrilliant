@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALL ELSE EQUAL: Understand what changes when one thing does</title>
+  <meta name="description" content="An interactive platform for learning the entire connected financial world. Change one thing. Understand everything it changes." />
+  
+  <!-- Geist font, Cormorant Garamond editorial serif & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Geist:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            'aee-lime': '#d4e157',
+            'aee-lime-bright': '#e2f952',
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              900: '#064e3b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- App Custom Styles -->
+  <link rel="stylesheet" href="./src/styles/app.css?v=20260911_0315" />
+
+  <!-- GSAP Core & ScrollTrigger Animation Engine -->
+  <script src="./assets/vendor/gsap/gsap.min.js"></script>
+  <script src="./assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="./assets/vendor/gsap/MotionPathPlugin.min.js"></script>
+
+  <!-- Lenis Smooth Inertial Scrolling Engine -->
+  <link rel="stylesheet" href="./assets/vendor/lenis/lenis.css" />
+  <script src="./assets/vendor/lenis/lenis.min.js"></script>
+
+  <!-- Pre-hydration theme detection -->
+  <script>
+    try {
+      const raw = localStorage.getItem('finbrilliant_user_profile_v1');
+      if (raw) {
+        const p = JSON.parse(raw);
+        if (p && p.theme === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        } else {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        }
+      }
+    } catch (e) {}
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans antialiased selection:bg-emerald-500/20 selection:text-emerald-800 dark:selection:bg-emerald-500/30 dark:selection:text-emerald-200 transition-colors duration-200 fin-grid-backdrop min-h-screen">
+  <div id="app">
+    <!-- Fallback / Loading State -->
+    <div class="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 text-slate-500 dark:text-slate-400 font-medium">
+      <div class="text-center space-y-3">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-cyan-500 flex items-center justify-center text-white text-2xl mx-auto animate-pulse shadow-lg shadow-emerald-500/20">
+          ⚡
+        </div>
+        <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">Loading FinBrilliant...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Motion Preference Initializer (Fluid cinematic scrollytelling by default) -->
+  <script>
+    window.__FIN_REDUCE_MOTION = false;
+    try {
+      if (localStorage.getItem('finbrilliant_reduce_motion') === 'true') {
+        window.__FIN_REDUCE_MOTION = true;
+        document.documentElement.classList.add('reduce-motion');
+      }
+    } catch (e) {}
+  </script>
+
+  <!-- Main ES Module Entry Point with Cache Busting -->
+  <script type="module">
+    const t = Date.now();
+    const { App } = await import(`./src/app.js?v=${t}`);
+    const appEl = document.getElementById('app');
+    const app = new App(appEl);
+    app.init();
+    window.FinBrilliantApp = app;
+  </script>
+</body>
+</html>
