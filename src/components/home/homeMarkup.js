@@ -1,52 +1,18 @@
-/**
- * Homepage Markup Templates
- * Pure Swiss monochrome layout, stark contrast, and zero artificial chrome.
- */
+import { getNavbarMarkup } from '../navbar/navbarMarkup.js';
 
-export function getHomePageMarkup() {
+export function getHomePageMarkup(options = {}) {
+  const navbarHtml = getNavbarMarkup({
+    ...options,
+    state: { currentView: 'home', ...(options.state || {}) }
+  });
+
   return `
     <div class="aee-root relative min-h-screen bg-[#060709] text-[#f8fafc]">
       
-      <!-- Minimalist Pinned Top Header -->
-      <header class="aee-nav-fixed flex items-center justify-between px-6 sm:px-10">
-        <!-- Brand Wordmark -->
-        <a href="#/" class="text-sm font-semibold tracking-[0.2em] uppercase text-white hover:text-slate-300 transition cursor-pointer">
-          ALL ELSE EQUAL
-        </a>
-
-        <!-- Navigation Links, Monochrome Theme Aperture & Statement -->
-        <div class="flex items-center gap-4 sm:gap-6 text-xs">
-          <nav class="flex items-center gap-5 font-medium text-slate-300">
-            <button id="nav-learn-btn" class="hover:text-white transition cursor-pointer">Learn</button>
-            <button id="nav-explore-btn" class="hover:text-white transition cursor-pointer">Explore</button>
-            <button id="nav-about-btn" class="hover:text-white transition cursor-pointer">About</button>
-          </nav>
-
-          <!-- Hairline Divider -->
-          <div class="h-4 w-[1px] bg-white/20"></div>
-
-          <!-- Innovative Bauhaus Monochrome Aperture Theme Toggle -->
-          <button id="aee-theme-toggle" class="aee-theme-toggle flex items-center gap-2 px-2.5 py-1 rounded-full border border-white/20 hover:border-white/50 transition-all duration-300 group cursor-pointer" aria-label="Toggle theme" title="Switch Theme">
-            <span class="aee-theme-aperture-wrap relative w-3.5 h-3.5 flex items-center justify-center pointer-events-none">
-              <svg class="aee-theme-aperture w-3.5 h-3.5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="8" cy="8" r="6.8" stroke="currentColor" stroke-width="1.2" />
-                <path d="M 8 1.2 A 6.8 6.8 0 0 0 8 14.8 Z" fill="currentColor" />
-              </svg>
-            </span>
-            <span id="aee-theme-label" class="font-mono text-[9.5px] tracking-[0.16em] uppercase text-slate-300 group-hover:text-white transition-colors">
-              DARK
-            </span>
-          </button>
-
-          <!-- Hairline Divider -->
-          <div class="h-4 w-[1px] bg-white/20 hidden sm:block"></div>
-
-          <!-- Brand Tagline -->
-          <span class="aee-editorial-serif text-xs text-slate-400 italic hidden sm:inline select-none">
-            A more thoughtful financial future.
-          </span>
-        </div>
-      </header>
+      <!-- Standardized Navbar Mount (Pinned Top Header + Floating Bottom Dock + Palette Modal) -->
+      <div id="navbar-mount">
+        ${navbarHtml}
+      </div>
 
       <!-- ===================================================================
            1. THE 8-SCENE CINEMATIC SCROLL EXPERIENCE
@@ -299,7 +265,7 @@ export function getHomePageMarkup() {
       </section>
 
       <!-- Minimalist Architectural Footer -->
-      <footer id="aee-footer" class="aee-footer py-12 px-6 sm:px-10 border-t border-white/10 bg-[#060709] text-xs text-slate-500 font-mono flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer id="aee-footer" class="aee-footer py-12 pb-32 sm:pb-36 px-6 sm:px-10 border-t border-white/10 bg-[#060709] text-xs text-slate-500 font-mono flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <span>© 2026 ALL ELSE EQUAL. The connected financial system from first principles.</span>
         </div>

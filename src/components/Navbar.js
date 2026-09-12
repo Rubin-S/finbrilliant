@@ -259,6 +259,25 @@ export function renderNavbar(container, state, onNavigate, onToggleTheme, onTogg
     });
   });
 
+  // Top Nav About Button Handler
+  const navAboutBtn = container.querySelector('#nav-about-btn');
+  if (navAboutBtn) {
+    navAboutBtn.addEventListener('click', () => {
+      soundEngine.playClick();
+      if (typeof onNavigate === 'function') {
+        onNavigate('home');
+        setTimeout(() => {
+          if (typeof document !== 'undefined') {
+            const aboutSection = document.querySelector('#aee-about-section');
+            if (aboutSection && typeof aboutSection.scrollIntoView === 'function') {
+              aboutSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        }, 150);
+      }
+    });
+  }
+
   // Sound Toggle Handler
   const soundBtn = container.querySelector('.sound-toggle');
   if (soundBtn) {
@@ -277,9 +296,21 @@ export function renderNavbar(container, state, onNavigate, onToggleTheme, onTogg
       if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
       soundEngine.playClick();
       animateThemeToggle(themeBtn);
+      let nextTheme;
       if (typeof onToggleTheme === 'function') {
-        onToggleTheme();
+        nextTheme = onToggleTheme();
       }
+      const isDark = nextTheme ? nextTheme !== 'light' : (typeof document !== 'undefined' ? document.documentElement.classList.contains('dark') : true);
+      container.querySelectorAll('.aee-theme-aperture').forEach(ap => {
+        ap.style.transform = isDark ? 'rotate(0deg)' : 'rotate(180deg)';
+      });
+      container.querySelectorAll('#aee-theme-label').forEach(lbl => {
+        lbl.textContent = isDark ? 'DARK' : 'LIGHT';
+      });
+      container.querySelectorAll('.theme-toggle').forEach(btn => {
+        btn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+        btn.setAttribute('title', isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme');
+      });
     });
   });
 

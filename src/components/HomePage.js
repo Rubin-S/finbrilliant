@@ -10,67 +10,112 @@ import { bindCinematicScroller } from '../utils/cinematicScroller.js';
 import { getHomePageMarkup } from './home/homeMarkup.js';
 import { setupInteractiveSandbox } from './home/homeSandbox.js';
 import { scrollToTarget } from '../utils/smoothScroll.js';
+import { renderNavbar } from './Navbar.js';
 
-export function renderHomePage(container, state, onNavigate = () => {}, onToggleTheme = null) {
+export function renderHomePage(container, state, onNavigate = () => {}, onToggleTheme = null, onToggleSound = null) {
   let cleanupScroller = null;
   let heroInstance = null;
+  let navbarCleanup = null;
+  let themeToggleHandler = null;
 
   // Render Swiss monochrome markup structure
-  container.innerHTML = getHomePageMarkup();
+  const profile = (state && state.profile) ? state.profile : { xp: 120, streak: 3, soundEnabled: true, theme: 'dark' };
+  const isLight = profile.theme === 'light';
+  container.innerHTML = getHomePageMarkup({ profile, isLight, state });
 
-  // Innovative Bauhaus Monochrome Theme Toggle Handler
+  // Mount and wire up the standardized navbar if #navbar-mount is present
+  const navMount = container.querySelector('#navbar-mount');
+  if (navMount) {
+    navbarCleanup = renderNavbar(
+      navMount,
+      state,
+      (view, lessonId = null) => {
+        onNavigate(view, lessonId);
+      },
+      () => {
+        let nextTheme;
+        if (typeof onToggleTheme === 'function') {
+          nextTheme = onToggleTheme();
+        } else {
+          const isCurrentlyDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+          nextTheme = isCurrentlyDark ? 'light' : 'dark';
+          if (typeof document !== 'undefined') {
+            const root = document.documentElement;
+            root.classList.toggle('dark', nextTheme === 'dark');
+            root.classList.toggle('light', nextTheme === 'light');
+            document.body.classList.toggle('theme-dark', nextTheme === 'dark');
+            document.body.classList.toggle('theme-light', nextTheme === 'light');
+            try {
+              root.style.colorScheme = nextTheme;
+              localStorage.setItem('finbrilliant_theme', nextTheme);
+            } catch (e) {}
+          }
+        }
+        if (state && state.profile) {
+          state.profile.theme = nextTheme;
+        }
+        return nextTheme;
+      },
+      () => {
+        if (typeof onToggleSound === 'function') {
+          return onToggleSound();
+        }
+      }
+    );
+  }
+
+  // Fallback Bauhaus Aperture Theme Toggle Handler (for unit tests / mock containers without #navbar-mount)
   const themeToggle = container.querySelector('#aee-theme-toggle');
   const themeLabel = container.querySelector('#aee-theme-label');
   const themeAperture = container.querySelector('.aee-theme-aperture');
 
-  const updateThemeUI = (isDark) => {
-    if (themeLabel) {
-      themeLabel.textContent = isDark ? 'DARK' : 'LIGHT';
-    }
-    if (themeAperture) {
-      themeAperture.style.transform = isDark ? 'rotate(0deg)' : 'rotate(180deg)';
-    }
-    if (themeToggle) {
-      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-      themeToggle.setAttribute('title', isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme');
-    }
-  };
-
-  // Determine current theme
-  const initialIsDark = (state && state.profile && state.profile.theme)
-    ? state.profile.theme !== 'light'
-    : (typeof document !== 'undefined' ? !document.documentElement.classList.contains('light') : true);
-
-  updateThemeUI(initialIsDark);
-
-  const handleThemeToggle = () => {
-    let nextTheme;
-    if (typeof onToggleTheme === 'function') {
-      nextTheme = onToggleTheme();
-    } else {
-      const isCurrentlyDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
-      nextTheme = isCurrentlyDark ? 'light' : 'dark';
-      if (typeof document !== 'undefined') {
-        const root = document.documentElement;
-        root.classList.toggle('dark', nextTheme === 'dark');
-        root.classList.toggle('light', nextTheme === 'light');
-        document.body.classList.toggle('theme-dark', nextTheme === 'dark');
-        document.body.classList.toggle('theme-light', nextTheme === 'light');
-        try {
-          root.style.colorScheme = nextTheme;
-          localStorage.setItem('finbrilliant_theme', nextTheme);
-        } catch (e) {}
+  if (!navMount && themeToggle) {
+    const updateThemeUI = (isDark) => {
+      if (themeLabel) {
+        themeLabel.textContent = isDark ? 'DARK' : 'LIGHT';
       }
-    }
-    if (state && state.profile) {
-      state.profile.theme = nextTheme;
-    }
-    const isDark = nextTheme !== 'light';
-    updateThemeUI(isDark);
-  };
+      if (themeAperture) {
+        themeAperture.style.transform = isDark ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
+      if (themeToggle) {
+        themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+        themeToggle.setAttribute('title', isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme');
+      }
+    };
 
-  if (themeToggle) {
-    themeToggle.addEventListener('click', handleThemeToggle);
+    const initialIsDark = (state && state.profile && state.profile.theme)
+      ? state.profile.theme !== 'light'
+      : (typeof document !== 'undefined' ? !document.documentElement.classList.contains('light') : true);
+
+    updateThemeUI(initialIsDark);
+
+    themeToggleHandler = () => {
+      let nextTheme;
+      if (typeof onToggleTheme === 'function') {
+        nextTheme = onToggleTheme();
+      } else {
+        const isCurrentlyDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+        nextTheme = isCurrentlyDark ? 'light' : 'dark';
+        if (typeof document !== 'undefined') {
+          const root = document.documentElement;
+          root.classList.toggle('dark', nextTheme === 'dark');
+          root.classList.toggle('light', nextTheme === 'light');
+          document.body.classList.toggle('theme-dark', nextTheme === 'dark');
+          document.body.classList.toggle('theme-light', nextTheme === 'light');
+          try {
+            root.style.colorScheme = nextTheme;
+            localStorage.setItem('finbrilliant_theme', nextTheme);
+          } catch (e) {}
+        }
+      }
+      if (state && state.profile) {
+        state.profile.theme = nextTheme;
+      }
+      const isDark = nextTheme !== 'light';
+      updateThemeUI(isDark);
+    };
+
+    themeToggle.addEventListener('click', themeToggleHandler);
   }
 
   // Mount the Cinematic Hero
@@ -161,8 +206,11 @@ export function renderHomePage(container, state, onNavigate = () => {}, onToggle
       if (resizeTimer) clearTimeout(resizeTimer);
       window.__aee_hero = null;
     }
-    if (themeToggle) {
-      themeToggle.removeEventListener('click', handleThemeToggle);
+    if (navbarCleanup && typeof navbarCleanup === 'function') {
+      navbarCleanup();
+    }
+    if (themeToggle && themeToggleHandler) {
+      themeToggle.removeEventListener('click', themeToggleHandler);
     }
     if (heroInstance && typeof heroInstance.destroy === 'function') {
       heroInstance.destroy();

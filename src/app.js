@@ -132,6 +132,12 @@ export class App {
           this.state.profile.theme = nextTheme;
           this.applyTheme(nextTheme);
           return nextTheme;
+        },
+        () => {
+          const nextSound = this.storage.toggleSound();
+          this.state.profile.soundEnabled = nextSound;
+          soundEngine.enabled = nextSound;
+          return nextSound;
         }
       );
       return;
