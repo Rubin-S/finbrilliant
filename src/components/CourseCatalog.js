@@ -17,68 +17,76 @@ export function renderCourseCatalog(container, state, onStartLesson, onNavigate)
   const completedTracksCount = COURSES.filter(c => c.lessons.every(l => completedLessons.includes(l.id))).length;
 
   container.innerHTML = `
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 animate-fade-in">
+      
+      <!-- Top Micro-Framing Tags -->
+      <div class="flex items-center justify-between text-[10px] font-mono tracking-widest uppercase text-slate-500 mb-6 select-none border-b border-white/10 pb-3">
+        <span>CURRICULUM ATLAS / THE 6 REALMS</span>
+        <span>FIRST-PRINCIPLES PEDAGOGY</span>
+      </div>
+
       <!-- Hero Banner with Editorial Visual Artwork -->
-      <div class="relative overflow-hidden rounded-3xl bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 p-8 sm:p-10 lg:p-12 mb-10 shadow-sm dark:shadow-2xl transition-all glass-panel">
+      <div class="relative overflow-hidden rounded-2xl bg-white/[0.02] border border-white/15 p-8 sm:p-10 lg:p-12 mb-12 shadow-2xl transition-all">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
           <div class="lg:col-span-7">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 dark:text-emerald-400 text-xs font-semibold mb-4 select-none">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Interactive First-Principles Finance</span>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 bg-white/5 text-[10px] font-mono tracking-widest uppercase text-slate-300 mb-4 select-none">
+              <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+              <span>INTERACTIVE FINANCIAL REASONING</span>
             </div>
 
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide uppercase text-white leading-tight">
               Master Finance from <br class="hidden sm:inline" />
-              <span class="text-emerald-600 dark:text-emerald-400">First Principles</span>.
+              <span class="font-serif italic lowercase tracking-normal text-slate-200">first principles</span>.
             </h1>
 
-            <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
-              No dry accounting textbooks. No passive video lectures. Touch the order book, manipulate Black-Scholes Greeks, discount cash flows, and balance the Markowitz efficient frontier in real time.
+            <p class="mt-4 aee-editorial-serif text-base sm:text-lg text-slate-300 italic leading-relaxed max-w-xl">
+              No dry accounting textbooks. No passive video lectures. Touch the order book, manipulate Black-Scholes Greeks, discount cash flows, and balance the efficient frontier in real time.
             </p>
             
             <div class="mt-8 flex flex-wrap items-center gap-3">
-              <button class="hero-start-btn bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black px-6 py-3 rounded-2xl shadow-lg shadow-emerald-500/25 transition active:scale-95 flex items-center gap-2 text-sm select-none">
-                <span>⚡ Start First Lesson</span>
+              <button class="hero-start-btn px-5 py-2.5 rounded-lg text-xs font-mono tracking-wider uppercase border border-white bg-white text-black font-bold hover:bg-slate-200 transition active:scale-95 flex items-center gap-2 select-none cursor-pointer">
+                <span>Start First Lesson</span>
                 <span>→</span>
               </button>
-              <button class="hero-grill-btn bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-bold px-5 py-3 rounded-2xl transition flex items-center gap-2 text-sm shadow-sm select-none">
-                <span>🔥 Superday Grill Arena</span>
+              <button class="hero-grill-btn px-5 py-2.5 rounded-lg text-xs font-mono tracking-wider uppercase border border-white/20 bg-transparent text-slate-300 hover:text-white hover:border-white/40 transition flex items-center gap-2 select-none cursor-pointer">
+                <span>Superday Grill Arena</span>
+                <span>→</span>
               </button>
             </div>
 
             <!-- Quantitative Telemetry Bar -->
-            <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center gap-6 text-xs text-slate-500 dark:text-slate-400 select-none">
+            <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center gap-8 text-xs text-slate-400 select-none font-mono">
               <div class="flex items-center gap-2">
-                <span class="font-mono font-black text-slate-900 dark:text-white tabular-nums text-sm">${COURSES.length}</span>
-                <span>Core Tracks</span>
+                <span class="font-bold text-white tabular-nums text-sm">${COURSES.length}</span>
+                <span class="text-[10px] tracking-wider uppercase">Core Tracks</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="font-mono font-black text-emerald-600 dark:text-emerald-400 tabular-nums text-sm">${totalLessonsCount}</span>
-                <span>Interactive Simulations</span>
+                <span class="font-bold text-white tabular-nums text-sm">${totalLessonsCount}</span>
+                <span class="text-[10px] tracking-wider uppercase">Interactive Models</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="font-mono font-black text-amber-500 tabular-nums text-sm">🔥 ${profile.streak}d</span>
-                <span>Daily Streak</span>
+                <span class="font-bold text-white tabular-nums text-sm">${profile.streak}D</span>
+                <span class="text-[10px] tracking-wider uppercase">Active Streak</span>
               </div>
             </div>
           </div>
 
           <!-- Editorial Hero Artwork -->
           <div class="lg:col-span-5 relative">
-            <div class="relative rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-2xl group">
+            <div class="relative rounded-xl overflow-hidden border border-white/15 shadow-2xl group">
               <img 
                 src="./assets/quant_terminal_hero.jpg" 
                 alt="FinBrilliant Quantitative Analytics Interface" 
-                class="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-105"
+                class="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-105 filter grayscale contrast-125"
                 loading="eager"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
-                <div class="flex items-center justify-between w-full text-[11px] font-mono text-emerald-400 select-none">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                <div class="flex items-center justify-between w-full text-[10px] font-mono tracking-widest text-slate-300 uppercase select-none">
                   <span class="flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>QUANT SIMULATION ENGINE</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                    <span>QUANT ENGINE SIMULATION</span>
                   </span>
-                  <span class="text-slate-300">LIVE FEED</span>
+                  <span class="text-slate-400">STATUS: ACTIVE</span>
                 </div>
               </div>
             </div>
@@ -86,151 +94,148 @@ export function renderCourseCatalog(container, state, onStartLesson, onNavigate)
         </div>
       </div>
 
-      <!-- Asymmetric Bento Grid (Anti-slop rhythm: 5 / 4 / 3 column split) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-12">
-        <!-- Daily Boost Callout (Prominent, col-span-5) -->
-        <div class="lg:col-span-5 p-6 rounded-3xl bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 flex flex-col justify-between cursor-pointer group transition shadow-sm dark:shadow-xl card-modern select-none" data-nav="boost">
+      <!-- Asymmetric Bento Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-14">
+        <!-- Daily Boost Callout -->
+        <div class="lg:col-span-5 p-6 rounded-xl bg-white/[0.02] border border-white/15 hover:border-white/40 flex flex-col justify-between cursor-pointer group transition shadow-xl card-modern select-none" data-nav="boost">
           <div>
             <div class="flex items-start justify-between gap-4 mb-4">
-              <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl group-hover:scale-105 transition border border-emerald-500/20">
-                ⚡
-              </div>
-              <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[11px] font-mono font-bold tracking-wider uppercase border border-emerald-500/25">
-                2X XP Multiplier
+              <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 rounded border border-white/20 text-slate-300 bg-white/5">
+                01 / DAILY CHALLENGE
+              </span>
+              <span class="text-[10px] font-mono tracking-widest uppercase text-slate-400">
+                2X XP ACTIVE
               </span>
             </div>
             <div>
-              <span class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Daily Challenge Arena</span>
-              <h3 class="text-lg font-extrabold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition mt-1">
+              <span class="text-[10px] font-mono tracking-widest uppercase text-slate-400 block mb-1">Daily Challenge Arena</span>
+              <h3 class="text-lg font-medium text-white tracking-wide uppercase group-hover:text-slate-200 transition">
                 Quantitative Daily Boost
               </h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+              <p class="aee-editorial-serif text-sm text-slate-400 italic mt-2 leading-relaxed">
                 Solve today's quantitative micro-puzzle to preserve your ${profile.streak}-day streak and collect double XP.
               </p>
             </div>
           </div>
-          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-emerald-600 dark:text-emerald-400">
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono tracking-wider uppercase text-slate-300 group-hover:text-white">
             <span>Solve Daily Boost</span>
-            <span class="group-hover:translate-x-1 transition font-mono">→</span>
+            <span class="group-hover:translate-x-1 transition">→</span>
           </div>
         </div>
 
-        <!-- Grill Me Arena Callout (High-intensity, col-span-4) -->
-        <div class="lg:col-span-4 p-6 rounded-3xl bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 hover:border-amber-500/40 dark:hover:border-amber-500/40 flex flex-col justify-between cursor-pointer group transition shadow-sm dark:shadow-xl card-modern select-none" data-nav="grill">
+        <!-- Grill Me Arena Callout -->
+        <div class="lg:col-span-4 p-6 rounded-xl bg-white/[0.02] border border-white/15 hover:border-white/40 flex flex-col justify-between cursor-pointer group transition shadow-xl card-modern select-none" data-nav="grill">
           <div>
             <div class="flex items-start justify-between gap-4 mb-4">
-              <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl group-hover:scale-105 transition border border-amber-500/20">
-                🔥
-              </div>
-              <span class="px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400 text-[11px] font-mono font-bold tracking-wider uppercase border border-amber-500/25">
-                25s Rapid-Fire
+              <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 rounded border border-white/20 text-slate-300 bg-white/5">
+                02 / TECHNICAL ARENA
+              </span>
+              <span class="text-[10px] font-mono tracking-widest uppercase text-slate-400">
+                25S RAPID-FIRE
               </span>
             </div>
             <div>
-              <span class="text-xs font-mono font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Technical Interview Arena</span>
-              <h3 class="text-lg font-extrabold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition mt-1">
+              <span class="text-[10px] font-mono tracking-widest uppercase text-slate-400 block mb-1">Technical Interview Arena</span>
+              <h3 class="text-lg font-medium text-white tracking-wide uppercase group-hover:text-slate-200 transition">
                 Wall Street Superday
               </h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                High score: <strong class="font-mono tabular-nums font-bold">${profile.grillStats?.highScore || 0} pts</strong> • 3 Lives • Mental math & Greeks
+              <p class="aee-editorial-serif text-sm text-slate-400 italic mt-2 leading-relaxed">
+                High score: <strong class="font-mono tabular-nums font-normal text-white">${profile.grillStats?.highScore || 0} PTS</strong>. 3 strikes. Mental math and options Greeks under pressure.
               </p>
             </div>
           </div>
-          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-amber-600 dark:text-amber-400">
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono tracking-wider uppercase text-slate-300 group-hover:text-white">
             <span>Enter Arena</span>
-            <span class="group-hover:translate-x-1 transition font-mono">→</span>
+            <span class="group-hover:translate-x-1 transition">→</span>
           </div>
         </div>
 
-        <!-- Goals Callout (Compact, col-span-3) -->
-        <div class="lg:col-span-3 p-6 rounded-3xl bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 hover:border-cyan-500/40 dark:hover:border-cyan-500/40 flex flex-col justify-between cursor-pointer group transition shadow-sm dark:shadow-xl card-modern select-none" data-nav="goal">
+        <!-- Goals Callout -->
+        <div class="lg:col-span-3 p-6 rounded-xl bg-white/[0.02] border border-white/15 hover:border-white/40 flex flex-col justify-between cursor-pointer group transition shadow-xl card-modern select-none" data-nav="goal">
           <div>
             <div class="flex items-start justify-between gap-4 mb-4">
-              <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-2xl group-hover:scale-105 transition border border-cyan-500/20">
-                🎯
-              </div>
-              <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400 font-mono tabular-nums">
+              <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 rounded border border-white/20 text-slate-300 bg-white/5">
+                03 / MASTERY
+              </span>
+              <span class="text-xs font-mono text-white tabular-nums">
                 ${profile.weeklyGoal.completedThisWeek}/${profile.weeklyGoal.targetLessons}
               </span>
             </div>
             <div>
-              <span class="text-xs font-mono font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">Weekly Target</span>
-              <h3 class="text-lg font-extrabold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mt-1">
+              <span class="text-[10px] font-mono tracking-widest uppercase text-slate-400 block mb-1">Weekly Commitment</span>
+              <h3 class="text-lg font-medium text-white tracking-wide uppercase group-hover:text-slate-200 transition">
                 Mastery Hub
               </h3>
-              <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full mt-3 overflow-hidden border border-slate-200/60 dark:border-slate-700/60">
-                <div class="bg-cyan-500 h-full rounded-full transition-all duration-300" style="width: ${Math.min(100, Math.round((profile.weeklyGoal.completedThisWeek / profile.weeklyGoal.targetLessons) * 100))}%"></div>
+              <div class="w-full bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden border border-white/10">
+                <div class="bg-white h-full rounded-full transition-all duration-300" style="width: ${Math.min(100, Math.round((profile.weeklyGoal.completedThisWeek / profile.weeklyGoal.targetLessons) * 100))}%"></div>
               </div>
             </div>
           </div>
-          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-cyan-600 dark:text-cyan-400">
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono tracking-wider uppercase text-slate-300 group-hover:text-white">
             <span>View Goals</span>
-            <span class="group-hover:translate-x-1 transition font-mono">→</span>
+            <span class="group-hover:translate-x-1 transition">→</span>
           </div>
         </div>
       </div>
 
       <!-- Course Tracks Header -->
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-3">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-3 border-b border-white/10 pb-4">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">Core Curriculum</h2>
-          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">6 interactive tracks spanning foundational finance to institutional quant trading</p>
+          <div class="text-[10px] font-mono tracking-widest uppercase text-slate-400 mb-1">CURRICULUM ARCHITECTURE</div>
+          <h2 class="text-2xl sm:text-3xl font-light tracking-wide uppercase text-white">Six Foundational Disciplines</h2>
         </div>
-        <div class="text-xs text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-900/90 px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm self-start sm:self-auto select-none font-mono">
-          Completed: <strong class="text-emerald-600 dark:text-emerald-400 font-bold">${completedTracksCount}</strong> / ${COURSES.length} Tracks <span class="text-slate-400">(${completedLessons.length}/${totalLessonsCount} Lessons)</span>
+        <div class="text-xs text-slate-400 bg-white/5 px-3.5 py-1.5 rounded border border-white/15 self-start sm:self-auto select-none font-mono">
+          COMPLETED: <strong class="text-white font-bold">${completedTracksCount}</strong> / ${COURSES.length} TRACKS <span class="text-slate-500">(${completedLessons.length}/${totalLessonsCount} LESSONS)</span>
         </div>
       </div>
 
       <!-- Course Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        ${COURSES.map(course => {
+        ${COURSES.map((course, idx) => {
           const totalLessons = course.lessons.length;
           const completedCount = course.lessons.filter(l => completedLessons.includes(l.id)).length;
           const pct = Math.round((completedCount / totalLessons) * 100);
+          const courseNum = String(idx + 1).padStart(2, '0');
 
           return `
-            <div class="course-card rounded-3xl bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 p-6 sm:p-7 flex flex-col justify-between shadow-sm dark:shadow-xl transition hover:-translate-y-1 group">
+            <div class="course-card rounded-xl bg-white/[0.02] border border-white/15 hover:border-white/40 p-6 flex flex-col justify-between shadow-xl transition hover:-translate-y-0.5 group">
               <div>
                 <div class="flex items-start justify-between gap-3 mb-4 select-none">
-                  <span class="text-3xl p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 group-hover:scale-105 transition">${course.icon}</span>
+                  <span class="text-xs font-mono tracking-widest px-2.5 py-1 rounded bg-white/5 border border-white/20 text-white font-bold">${courseNum} / ${course.category.toUpperCase()}</span>
                   <div class="flex flex-col items-end gap-1">
-                    <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
-                      course.level === 'Beginner' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30' :
-                      course.level === 'Intermediate' ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30' :
-                      'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700'
-                    }">${course.level}</span>
-                    <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">${course.estimatedMinutes} min</span>
+                    <span class="text-[9px] font-mono uppercase tracking-widest px-2 py-0.5 rounded border border-white/15 text-slate-300">${course.level.toUpperCase()}</span>
+                    <span class="text-[10px] font-mono text-slate-400">${course.estimatedMinutes} MIN</span>
                   </div>
                 </div>
 
-                <span class="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase block mb-1">${course.category}</span>
-                <h3 class="text-lg font-black text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition leading-snug tracking-tight">${course.title}</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2 leading-relaxed">${course.description}</p>
+                <h3 class="text-base sm:text-lg font-medium tracking-wide uppercase text-white group-hover:text-slate-200 transition leading-snug">${course.title}</h3>
+                <p class="aee-editorial-serif text-xs sm:text-sm text-slate-400 italic mt-2.5 leading-relaxed">${course.description}</p>
               </div>
 
-              <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/80">
+              <div class="mt-6 pt-4 border-t border-white/10">
                 <!-- Progress bar -->
-                <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1.5 select-none font-mono">
-                  <span>Progress</span>
-                  <span class="font-bold tabular-nums ${pct === 100 ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-700 dark:text-slate-300'}">${pct}%</span>
+                <div class="flex items-center justify-between text-[10px] text-slate-400 mb-1.5 select-none font-mono">
+                  <span>MASTERY PROGRESS</span>
+                  <span class="font-bold tabular-nums text-white">${pct}%</span>
                 </div>
-                <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden mb-4 border border-slate-200/50 dark:border-slate-700/40">
-                  <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+                <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mb-4 border border-white/10">
+                  <div class="h-full bg-white rounded-full transition-all duration-300" style="width: ${pct}%"></div>
                 </div>
 
                 <!-- Lessons List -->
                 <div class="space-y-2 select-none">
-                  ${course.lessons.map(lesson => {
+                  ${course.lessons.map((lesson, lIdx) => {
                     const isDone = completedLessons.includes(lesson.id);
+                    const stepNum = String(lIdx + 1).padStart(2, '0');
                     return `
-                      <button class="lesson-item-btn w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between text-left transition active:scale-98" data-lesson-id="${lesson.id}">
+                      <button class="lesson-item-btn w-full p-2.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 flex items-center justify-between text-left transition cursor-pointer" data-lesson-id="${lesson.id}">
                         <div class="flex items-center gap-2.5">
-                          <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-mono font-bold ${isDone ? 'bg-emerald-500 text-slate-950' : 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400'}">
-                            ${isDone ? '✓' : '•'}
+                          <span class="text-[10px] font-mono ${isDone ? 'text-white font-bold' : 'text-slate-500'}">
+                            [${isDone ? '✓' : stepNum}]
                           </span>
-                          <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">${lesson.title}</span>
+                          <span class="text-xs font-medium text-slate-200">${lesson.title}</span>
                         </div>
-                        <span class="text-[11px] font-mono font-bold text-emerald-600 dark:text-emerald-400">+${lesson.xp} XP</span>
+                        <span class="text-[10px] font-mono text-slate-400">+${lesson.xp} XP</span>
                       </button>
                     `;
                   }).join('')}

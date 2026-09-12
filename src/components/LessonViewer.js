@@ -37,7 +37,7 @@ export function renderLessonViewer(container, lessonId, state, onCompleteLesson,
   }
 
   if (!targetLesson) {
-    container.innerHTML = `<div class="p-8 text-center text-rose-400">Lesson not found. <button class="mt-4 px-4 py-2 bg-slate-800 text-white rounded exit-btn">Return</button></div>`;
+    container.innerHTML = `<div class="p-8 text-center text-slate-400 font-mono">Lesson not found. <button class="mt-4 px-4 py-2 border border-white/20 text-white rounded exit-btn cursor-pointer">Return</button></div>`;
     container.querySelector('.exit-btn').onclick = onExit;
     return;
   }
@@ -54,62 +54,63 @@ export function renderLessonViewer(container, lessonId, state, onCompleteLesson,
     const isLastStep = currentStepIndex === totalSteps - 1;
 
     container.innerHTML = `
-      <div class="max-w-3xl mx-auto px-4 py-6">
+      <div class="max-w-3xl mx-auto px-4 py-8 animate-fade-in">
         <!-- Top Navigation & Segmented Progress Bar -->
-        <div class="mb-6">
-          <div class="flex items-center justify-between mb-3">
-            <button class="exit-lesson-btn flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition">
+        <div class="mb-8 select-none">
+          <div class="flex items-center justify-between mb-3 border-b border-white/10 pb-3">
+            <button class="exit-lesson-btn flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-slate-400 hover:text-white transition cursor-pointer">
               <span>←</span> <span>Exit Lesson</span>
             </button>
-            <div class="text-xs font-bold text-slate-600 dark:text-slate-300">
-              ${targetCourse.title} • <span class="text-emerald-600 dark:text-emerald-400 font-bold">Step ${currentStepIndex + 1} of ${totalSteps}</span>
+            <div class="text-xs font-mono text-slate-400 tracking-wider uppercase">
+              ${targetCourse.title} · <span class="text-white font-bold">STEP ${currentStepIndex + 1} OF ${totalSteps}</span>
             </div>
           </div>
 
           <!-- Segmented Progress Pills -->
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-1.5 mt-4">
             ${targetLesson.cards.map((c, idx) => {
-              let colorClass = 'bg-slate-200 dark:bg-slate-800';
+              let colorClass = 'bg-white/10';
               let extraClass = '';
-              if (idx < currentStepIndex) colorClass = 'bg-emerald-500';
+              if (idx < currentStepIndex) colorClass = 'bg-white';
               else if (idx === currentStepIndex) {
-                colorClass = 'bg-emerald-400';
+                colorClass = 'bg-white';
                 extraClass = 'progress-pill-active';
               }
-              return `<div class="h-2 flex-1 rounded-full ${colorClass} ${extraClass} transition-all duration-300"></div>`;
+              return `<div class="h-[2px] flex-1 rounded-full ${colorClass} ${extraClass} transition-all duration-300"></div>`;
             }).join('')}
           </div>
         </div>
 
         <!-- Card Container -->
-        <div class="lesson-card-surface bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm dark:shadow-2xl transition-all">
-          <div class="mb-5">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-1">Concept Mastery</span>
-            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">${card.title}</h2>
-            ${card.prompt ? `<p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${card.prompt}</p>` : ''}
+        <div class="lesson-card-surface bg-white/[0.02] border border-white/15 rounded-2xl p-6 sm:p-10 shadow-2xl transition-all">
+          <div class="mb-6">
+            <span class="text-[10px] font-mono tracking-widest uppercase text-slate-400 block mb-1">CONCEPT MASTERY / STEP ${currentStepIndex + 1}</span>
+            <h2 class="text-xl sm:text-2xl font-light uppercase tracking-wide text-white">${card.title}</h2>
+            ${card.prompt ? `<p class="mt-3 aee-editorial-serif text-base sm:text-lg text-slate-300 italic leading-relaxed">${card.prompt}</p>` : ''}
           </div>
 
           <!-- Interactive Widget Mount Point -->
-          ${card.widgetType ? `<div id="interactive-widget-mount" class="my-5"></div>` : ''}
+          ${card.widgetType ? `<div id="interactive-widget-mount" class="my-6 border border-white/10 rounded-xl p-4 bg-black/20"></div>` : ''}
 
           <!-- Summary Card View -->
           ${card.type === 'summary' ? `
-            <div class="my-6 p-6 rounded-2xl bg-gradient-to-br from-emerald-50 via-white to-teal-50/40 dark:from-emerald-950/40 dark:to-slate-900 border border-emerald-200/80 dark:border-emerald-500/40 text-center animate-fade-in shadow-sm">
-              <span class="text-6xl block mb-3 animate-bounce">🏆</span>
-              <h3 class="text-xl font-black text-slate-900 dark:text-white">Lesson Completed!</h3>
-              <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">You just absorbed first-principles financial mechanics.</p>
+            <div class="my-6 p-8 rounded-xl bg-white/[0.03] border border-white/20 text-center animate-fade-in shadow-xl">
+              <span class="text-xs font-mono tracking-widest uppercase px-3 py-1 rounded border border-white/30 text-white bg-white/10 inline-block mb-4">
+                TRACK COMPLETED
+              </span>
+              <h3 class="text-2xl font-light uppercase tracking-wide text-white">All Else Equal: Discipline Mastered</h3>
+              <p class="aee-editorial-serif text-base text-slate-300 italic mt-2">You have synthesized the first-principles mechanics of this discipline.</p>
               
-              <div class="my-4 py-3 px-4 bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-700/60 inline-flex items-center gap-2 shadow-sm">
-                <span class="text-xl">⚡</span>
-                <span class="text-base font-extrabold text-emerald-600 dark:text-emerald-400">+${card.xpReward || targetLesson.xp} XP Earned</span>
+              <div class="my-6 py-3 px-5 bg-white/5 rounded-lg border border-white/15 inline-flex items-center gap-3">
+                <span class="font-mono text-sm tracking-wider uppercase text-white font-bold">+${card.xpReward || targetLesson.xp} XP AWARDED</span>
               </div>
 
-              <div class="text-left mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
-                <span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Key Insights:</span>
-                ${(card.takeaways || []).map(t => `
-                  <div class="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-200">
-                    <span class="text-emerald-500 font-bold">•</span>
-                    <span>${t}</span>
+              <div class="text-left mt-6 pt-6 border-t border-white/10 space-y-3 font-mono text-xs">
+                <span class="text-[10px] tracking-widest uppercase text-slate-400 block">KEY INSIGHTS:</span>
+                ${(card.takeaways || []).map((t, tIdx) => `
+                  <div class="flex items-start gap-2.5 text-slate-300">
+                    <span class="text-white font-bold">[${String(tIdx + 1).padStart(2, '0')}]</span>
+                    <span class="leading-relaxed">${t}</span>
                   </div>
                 `).join('')}
               </div>
@@ -118,29 +119,32 @@ export function renderLessonViewer(container, lessonId, state, onCompleteLesson,
 
           <!-- Question & Options (for quizzes & challenges) -->
           ${card.options ? `
-            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/80">
-              <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-3">${card.question}</h4>
-              <div class="space-y-2.5">
-                ${card.options.map(opt => {
-                  let optStyle = 'border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-800/40 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 shadow-sm';
-                  let icon = '○';
+            <div class="mt-8 pt-6 border-t border-white/10">
+              <h4 class="text-sm font-mono tracking-wider uppercase text-white mb-4">${card.question}</h4>
+              <div class="space-y-3">
+                ${card.options.map((opt, oIdx) => {
+                  const letter = String.fromCharCode(65 + oIdx);
+                  let optStyle = 'border-white/15 bg-white/[0.02] hover:bg-white/5 hover:border-white/30 text-slate-200';
+                  let mark = `[${letter}]`;
 
                   if (hasChecked) {
                     if (opt.isCorrect) {
-                      optStyle = 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-950 dark:text-emerald-200 ring-2 ring-emerald-500/30 font-semibold';
-                      icon = '✓';
+                      optStyle = 'border-white bg-white/15 text-white ring-1 ring-white font-bold';
+                      mark = `[✓ ${letter}]`;
                     } else if (selectedOptionId === opt.id) {
-                      optStyle = 'border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-950 dark:text-rose-200 ring-2 ring-rose-500/30 font-semibold';
-                      icon = '✕';
+                      optStyle = 'border-slate-600 bg-white/[0.01] text-slate-400';
+                      mark = `[✕ ${letter}]`;
+                    } else {
+                      optStyle = 'border-white/5 bg-transparent text-slate-600 opacity-40';
                     }
                   } else if (selectedOptionId === opt.id) {
-                    optStyle = 'border-emerald-500 dark:border-emerald-400 bg-emerald-50/60 dark:bg-emerald-950/20 text-emerald-950 dark:text-white ring-2 ring-emerald-500/30 font-semibold shadow-sm';
-                    icon = '●';
+                    optStyle = 'border-white bg-white/10 text-white ring-1 ring-white';
+                    mark = `[● ${letter}]`;
                   }
 
                   return `
-                    <button class="option-btn w-full p-3.5 rounded-xl border text-left text-xs sm:text-sm font-medium transition flex items-start gap-3 select-none ${optStyle}" data-opt-id="${opt.id}">
-                      <span class="text-base leading-none mt-0.5 font-bold ${hasChecked && opt.isCorrect ? 'text-emerald-500' : ''}">${icon}</span>
+                    <button class="option-btn w-full p-4 rounded-lg border text-left text-xs sm:text-sm font-mono tracking-wide transition flex items-start gap-3 select-none cursor-pointer ${optStyle}" data-opt-id="${opt.id}">
+                      <span class="leading-none mt-0.5 font-bold shrink-0">${mark}</span>
                       <span class="flex-1 leading-relaxed">${opt.text}</span>
                     </button>
                   `;
@@ -149,38 +153,38 @@ export function renderLessonViewer(container, lessonId, state, onCompleteLesson,
 
               <!-- Explanation Box -->
               ${hasChecked && selectedOptionId ? `
-                <div class="mt-4 p-4 rounded-xl text-xs sm:text-sm leading-relaxed animate-fade-in ${
+                <div class="mt-5 p-5 rounded-lg text-xs leading-relaxed animate-fade-in font-mono border ${
                   card.options.find(o => o.id === selectedOptionId)?.isCorrect 
-                    ? 'bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/50 text-emerald-950 dark:text-emerald-200' 
-                    : 'bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-500/50 text-rose-950 dark:text-rose-200'
+                    ? 'border-white/40 bg-white/10 text-white' 
+                    : 'border-white/20 bg-white/5 text-slate-300'
                 }">
-                  <div class="font-bold mb-1 flex items-center gap-1.5">
-                    ${card.options.find(o => o.id === selectedOptionId)?.isCorrect ? '💡 Spot On!' : '⚠️ Not Quite'}
+                  <div class="font-bold mb-1 tracking-wider uppercase">
+                    ${card.options.find(o => o.id === selectedOptionId)?.isCorrect ? 'STATUS: VERIFIED CORRECT' : 'STATUS: ANALYSIS & REASONING'}
                   </div>
-                  <p>${card.options.find(o => o.id === selectedOptionId)?.explanation || ''}</p>
+                  <p class="mt-1 leading-relaxed text-slate-300">${card.options.find(o => o.id === selectedOptionId)?.explanation || ''}</p>
                 </div>
               ` : ''}
             </div>
           ` : ''}
 
           <!-- Bottom Action Buttons -->
-          <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-            <button class="prev-step-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition ${currentStepIndex === 0 ? 'invisible' : ''}">
-              ← Previous
+          <div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+            <button class="prev-step-btn px-4 py-2 rounded-lg text-xs font-mono tracking-wider uppercase border border-white/20 text-slate-400 hover:text-white transition cursor-pointer ${currentStepIndex === 0 ? 'invisible' : ''}">
+              ← PREVIOUS
             </button>
 
             <div>
               ${card.type === 'summary' || (isLastStep && (!card.options || hasChecked)) ? `
-                <button class="complete-btn bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black px-6 py-2.5 rounded-xl shadow-lg shadow-emerald-500/25 transition transform hover:-translate-y-0.5 active:scale-95 text-sm">
-                  Complete Track 🎉
+                <button class="complete-btn px-6 py-2.5 rounded-lg text-xs font-mono tracking-wider uppercase border border-white bg-white text-black font-bold hover:bg-slate-200 transition cursor-pointer">
+                  COMPLETE DISCIPLINE →
                 </button>
               ` : card.options && !hasChecked ? `
-                <button class="check-btn px-6 py-2.5 rounded-xl font-bold text-sm transition ${selectedOptionId ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 cursor-pointer shadow-lg shadow-emerald-500/20' : 'bg-slate-100 dark:bg-slate-800 text-slate-400 border border-slate-200 dark:border-slate-700 cursor-not-allowed'}">
-                  Check Answer
+                <button class="check-btn px-6 py-2.5 rounded-lg text-xs font-mono tracking-wider uppercase border font-bold transition ${selectedOptionId ? 'border-white bg-white text-black cursor-pointer hover:bg-slate-200' : 'border-white/20 bg-transparent text-slate-600 cursor-not-allowed'}">
+                  CHECK ANSWER
                 </button>
               ` : `
-                <button class="next-step-btn bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-emerald-500/25 transition transform hover:-translate-y-0.5 active:scale-95 text-sm">
-                  Continue →
+                <button class="next-step-btn px-6 py-2.5 rounded-lg text-xs font-mono tracking-wider uppercase border border-white bg-white text-black font-bold hover:bg-slate-200 transition cursor-pointer">
+                  CONTINUE →
                 </button>
               `}
             </div>
@@ -292,8 +296,8 @@ export function renderLessonViewer(container, lessonId, state, onCompleteLesson,
 
 function triggerConfetti() {
   if (typeof document === 'undefined') return;
-  const colors = ['#10b981', '#38bdf8', '#f59e0b', '#a855f7', '#ec4899'];
-  for (let i = 0; i < 40; i++) {
+  const colors = ['#ffffff', '#cbd5e1', '#94a3b8', '#64748b'];
+  for (let i = 0; i < 30; i++) {
     const el = document.createElement('div');
     el.className = 'confetti-piece';
     el.style.left = `${Math.random() * 100}vw`;

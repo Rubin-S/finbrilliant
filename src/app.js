@@ -138,35 +138,32 @@ export class App {
     }
 
     this.root.innerHTML = `
-      <div class="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200 font-sans selection:bg-emerald-500/20 selection:text-emerald-800 dark:selection:bg-emerald-500/30 dark:selection:text-emerald-200 fin-grid-backdrop">
+      <div class="aee-root min-h-screen flex flex-col bg-[#060709] text-[#f8fafc] transition-colors duration-200 font-sans selection:bg-white/20 selection:text-white">
         <div id="navbar-mount"></div>
         <main id="view-mount" class="flex-1 pb-24 sm:pb-28"></main>
-        <footer class="py-10 pb-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-slate-950/90 backdrop-blur-md text-xs text-slate-500 dark:text-slate-400 transition-colors select-none">
+        <footer class="py-12 pb-36 border-t border-white/10 bg-black/40 backdrop-blur-md text-xs text-slate-400 select-none">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
               <div class="flex flex-col sm:flex-row items-center gap-3">
-                <div class="flex items-center gap-2">
-                  <div class="w-6 h-6 rounded-lg bg-emerald-500 flex items-center justify-center text-slate-950 text-xs font-black">
-                    ⚡
-                  </div>
-                  <span class="font-black text-slate-900 dark:text-white text-sm tracking-tight">FinBrilliant</span>
-                </div>
-                <span class="hidden sm:inline text-slate-300 dark:text-slate-700">|</span>
-                <span class="text-xs text-slate-500 dark:text-slate-400">First-Principles Quantitative Finance</span>
+                <a href="#/" class="text-sm font-semibold tracking-[0.2em] uppercase text-white hover:text-slate-300 transition">
+                  ALL ELSE EQUAL
+                </a>
+                <span class="hidden sm:inline text-white/20">|</span>
+                <span class="aee-editorial-serif text-xs text-slate-400 italic">Understand what changes when one thing does.</span>
               </div>
 
-              <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-slate-600 dark:text-slate-400">
-                <a href="#/courses" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Courses</a>
-                <a href="#/boost" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Daily Boost</a>
-                <a href="#/grill-me" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Superday Arena</a>
-                <a href="#/goal" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Goals</a>
-                <a href="#/lab" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Sandbox Lab</a>
+              <div class="flex flex-wrap items-center justify-center gap-6 text-xs font-mono tracking-wider uppercase text-slate-400">
+                <a href="#/courses" class="hover:text-white transition">Curriculum</a>
+                <a href="#/boost" class="hover:text-white transition">Dialectic</a>
+                <a href="#/grill-me" class="hover:text-white transition">Superday</a>
+                <a href="#/goal" class="hover:text-white transition">Dossier</a>
+                <a href="#/lab" class="hover:text-white transition">Laboratory</a>
               </div>
             </div>
 
-            <div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400 dark:text-slate-500 font-mono">
-              <p>© 2026 FinBrilliant. Quantitative mechanics, order books, and derivatives from first principles.</p>
-              <p>For educational & interview mastery. Not investment advice.</p>
+            <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] text-slate-500 font-mono tracking-wider uppercase">
+              <p>ALL ELSE EQUAL (FINBRILLIANT). FIRST-PRINCIPLES FINANCIAL SYSTEMS.</p>
+              <p>FOUNDATIONAL PEDAGOGY AND INTERVIEW RIGOR. NOT INVESTMENT ADVICE.</p>
             </div>
           </div>
         </footer>
