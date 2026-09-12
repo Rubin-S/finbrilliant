@@ -84,9 +84,9 @@ export function renderGoalView(container, state, onUpdateWeeklyGoal = () => {}, 
       container.querySelectorAll('.preset-btn').forEach(btn => {
         const pVal = parseInt(btn.getAttribute('data-preset-val'), 10);
         if (pVal === val) {
-          btn.className = 'preset-btn py-2 px-2.5 rounded-xl text-xs font-semibold border transition text-center bg-cyan-500/10 border-cyan-500 text-cyan-700 dark:text-cyan-300 shadow-sm font-bold ring-1 ring-cyan-500/30';
+          btn.className = 'preset-btn py-2 px-2.5 rounded-xl text-xs font-semibold border transition text-center bg-cyan-500/10 border-white text-white dark:text-white shadow-sm font-bold ring-1 ring-white/30';
         } else {
-          btn.className = 'preset-btn py-2 px-2.5 rounded-xl text-xs font-semibold border transition text-center bg-slate-50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-700/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800';
+          btn.className = 'preset-btn py-2 px-2.5 rounded-xl text-xs font-semibold border transition text-center bg-white/[0.02] border-white/15 text-slate-400 hover:text-white hover:border-white/30';
         }
       });
     }
@@ -96,7 +96,7 @@ export function renderGoalView(container, state, onUpdateWeeklyGoal = () => {}, 
         const val = parseInt(e.target.value, 10);
         if (progressText) progressText.innerHTML = `${completedThisWeek} <span class="text-slate-400 text-lg font-medium">/ ${val}</span>`;
         if (progressBar) progressBar.style.width = `${Math.min(100, Math.round((completedThisWeek / val) * 100))}%`;
-        if (targetLabel) targetLabel.innerHTML = `Custom Target: <strong class="text-cyan-600 dark:text-cyan-400 font-bold">${val} Lessons / Week</strong>`;
+        if (targetLabel) targetLabel.innerHTML = `Custom Target: <strong class="text-white font-bold">${val} Lessons / Week</strong>`;
         if (targetMins) targetMins.textContent = `~${val * 15} mins/week`;
         if (goalMsg) {
           const remaining = val - completedThisWeek;

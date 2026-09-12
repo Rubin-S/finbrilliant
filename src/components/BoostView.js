@@ -31,7 +31,7 @@ export function renderBoostView(container, state, onClaimBoost = () => {}, onNav
 
   function triggerConfetti() {
     if (typeof document === 'undefined') return;
-    const colors = ['#10b981', '#34d399', '#06b6d4', '#f59e0b', '#8b5cf6'];
+    const colors = ['#ffffff', '#e4e4e7', '#a1a1aa', '#71717a', '#27272a', '#09090b'];
     for (let i = 0; i < 48; i++) {
       const el = document.createElement('div');
       el.className = 'confetti-piece';

@@ -1,6 +1,7 @@
 /**
  * Cost of Delay Simulation Widget (Alice vs. Bob)
  * Demonstrates the dramatic wealth impact of early compounding versus delayed contributions.
+ * Pure Swiss Bauhaus monochrome broadsheet design language.
  */
 
 export function renderDelayCostWidget(container, initialProps = {}) {
@@ -59,12 +60,12 @@ export function renderDelayCostWidget(container, initialProps = {}) {
       <div class="widget-box p-4 rounded-xl bg-slate-900/90 border border-slate-700/80 shadow-2xl text-slate-100">
         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
           <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400">The Power of Starting Early</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">The Power of Starting Early</span>
             <h4 class="text-base font-bold text-white">Alice vs. Bob: The 10-Year Head Start</h4>
           </div>
           <div class="text-right">
             <span class="text-xs text-slate-400">Return Assumption</span>
-            <p class="text-sm font-bold text-emerald-400">${annualRate}% Annual</p>
+            <p class="text-sm font-bold text-white font-mono">${annualRate}% Annual</p>
           </div>
         </div>
 
@@ -76,11 +77,11 @@ export function renderDelayCostWidget(container, initialProps = {}) {
             <line x1="${padding.left}" y1="${padding.top + chartH}" x2="${width - padding.right}" y2="${padding.top + chartH}" stroke="#475569"/>
             <line x1="${padding.left + (10 / 40) * chartW}" y1="${padding.top}" x2="${padding.left + (10 / 40) * chartW}" y2="${padding.top + chartH}" stroke="#475569" stroke-dasharray="2 2"/>
 
-            <!-- Bob Curve (Sky Blue) -->
-            <polyline fill="none" stroke="#38bdf8" stroke-width="3" points="${bobPts}"/>
+            <!-- Bob Curve (Dashed Silver Line) -->
+            <polyline fill="none" stroke="#71717a" stroke-width="2.5" stroke-dasharray="4 4" points="${bobPts}"/>
 
-            <!-- Alice Curve (Emerald Green) -->
-            <polyline fill="none" stroke="#10b981" stroke-width="3.5" points="${alicePts}"/>
+            <!-- Alice Curve (Solid White Line) -->
+            <polyline fill="none" stroke="#ffffff" stroke-width="3.5" points="${alicePts}"/>
 
             <!-- Axis Labels -->
             <text x="${padding.left}" y="${padding.top + 12}" fill="#94a3b8" font-size="10">$${(maxVal / 1000).toFixed(0)}k</text>
@@ -92,32 +93,32 @@ export function renderDelayCostWidget(container, initialProps = {}) {
 
           <!-- Metrics comparison -->
           <div class="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-slate-800 text-xs">
-            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/40">
+            <div class="p-2.5 rounded-lg bg-white/10 border border-white/20">
               <div class="flex items-center justify-between">
-                <span class="font-bold text-emerald-400">Alice (Invested 20-30 only)</span>
-                <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold">10 yrs</span>
+                <span class="font-bold text-white">Alice (Invested 20-30 only)</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-white/20 text-white font-semibold">10 yrs</span>
               </div>
               <p class="text-[11px] text-slate-300 mt-1">Total Put In: <strong class="text-white">$${aliceFinal.contributed.toLocaleString()}</strong></p>
-              <p class="text-sm font-extrabold text-emerald-400 mt-1">Final Wealth: $${aliceFinal.balance.toLocaleString()}</p>
+              <p class="text-sm font-extrabold text-white font-mono mt-1">Final Wealth: $${aliceFinal.balance.toLocaleString()}</p>
             </div>
 
-            <div class="p-2.5 rounded-lg bg-sky-950/40 border border-sky-500/40">
+            <div class="p-2.5 rounded-lg bg-white/[0.03] border border-white/10">
               <div class="flex items-center justify-between">
-                <span class="font-bold text-sky-400">Bob (Invested 30-60 continuous)</span>
-                <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 font-semibold">30 yrs</span>
+                <span class="font-bold text-slate-300">Bob (Invested 30-60 continuous)</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-slate-400 font-semibold">30 yrs</span>
               </div>
               <p class="text-[11px] text-slate-300 mt-1">Total Put In: <strong class="text-white">$${bobFinal.contributed.toLocaleString()}</strong> (3x more!)</p>
-              <p class="text-sm font-extrabold text-sky-400 mt-1">Final Wealth: $${bobFinal.balance.toLocaleString()}</p>
+              <p class="text-sm font-extrabold text-slate-200 font-mono mt-1">Final Wealth: $${bobFinal.balance.toLocaleString()}</p>
             </div>
           </div>
         </div>
 
         <div class="space-y-2 mt-2 text-xs">
           <div class="flex justify-between">
-            <span class="text-slate-300">Annual Return Rate: <strong class="text-emerald-400">${annualRate}%</strong></span>
+            <span class="text-slate-300">Annual Return Rate: <strong class="text-white font-mono">${annualRate}%</strong></span>
             <span class="text-slate-400">S&P 500 Historical (~9%)</span>
           </div>
-          <input type="range" min="4" max="12" step="0.5" value="${annualRate}" class="delay-rate-slider w-full accent-emerald-500 cursor-pointer"/>
+          <input type="range" min="4" max="12" step="0.5" value="${annualRate}" class="delay-rate-slider w-full accent-white cursor-pointer"/>
         </div>
       </div>
     `;

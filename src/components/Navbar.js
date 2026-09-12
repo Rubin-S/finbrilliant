@@ -459,7 +459,7 @@ export function renderNavbar(container, state, onNavigate, onToggleTheme, onTogg
           <div class="overflow-hidden">
             <div class="flex items-center gap-2">
               <span class="font-semibold text-xs text-slate-200 truncate">${item.title}</span>
-              <span class="text-[9.5px] font-mono px-1.5 py-0.2 rounded uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">${item.badge}</span>
+              <span class="text-[9.5px] font-mono px-1.5 py-0.2 rounded uppercase tracking-wider bg-white/10 text-white border border-white/20">${item.badge}</span>
             </div>
             <p class="text-[11px] text-slate-400 truncate">${item.subtitle}</p>
           </div>

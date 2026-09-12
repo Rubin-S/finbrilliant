@@ -50,7 +50,7 @@ export function getQuestionMarkup({
         <!-- Timer -->
         <div class="flex items-center gap-2 font-mono">
           <span class="text-[10px] uppercase tracking-widest text-slate-400">TIME:</span>
-          <span id="grill-timer-val" class="text-sm font-bold ${timeLeft <= 5 ? 'text-rose-400 animate-pulse' : 'text-white'}">${timeLeft}S</span>
+          <span id="grill-timer-val" class="text-sm font-bold ${timeLeft <= 5 ? 'text-white font-black underline animate-pulse' : 'text-white'}">${timeLeft}S</span>
         </div>
       </div>
 

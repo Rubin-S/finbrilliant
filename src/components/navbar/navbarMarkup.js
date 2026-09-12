@@ -31,20 +31,20 @@ export function getNavbarMarkup(options = {}) {
           <svg class="w-6 h-6 shrink-0 transition-transform duration-200 group-hover:scale-105" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="finLogoGradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#06b6d4" />
-                <stop offset="100%" stop-color="#0284c7" />
+                <stop offset="0%" stop-color="#71717a" />
+                <stop offset="100%" stop-color="#3f3f46" />
               </linearGradient>
               <linearGradient id="finLogoGradEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#34d399" />
-                <stop offset="100%" stop-color="#059669" />
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="100%" stop-color="#d4d4d8" />
               </linearGradient>
               <filter id="finLogoShadow" x="-20%" y="-20%" width="140%" height="140%">
                 <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-opacity="0.35" />
               </filter>
             </defs>
             <rect x="10" y="2" width="14" height="14" rx="3.5" fill="url(#finLogoGradCyan)" />
-            <path d="M10 10 L16 16 L10 16 Z" fill="#042f2e" opacity="0.45" />
-            <rect x="2" y="10" width="14" height="14" rx="3.5" fill="url(#finLogoGradEmerald)" filter="url(#finLogoShadow)" />
+            <path d="M10 10 L16 16 L10 16 Z" fill="#000000" opacity="0.45" />
+            <rect x="2" y="10" width="14" height="14" rx="3.5" fill="url(#finLogoGradEmerald)" filter="url(#finLogoShadow)" stroke="rgba(0,0,0,0.12)" stroke-width="0.5" />
           </svg>
 
           <div class="flex flex-col justify-center">
@@ -235,8 +235,8 @@ export function getNavbarMarkup(options = {}) {
         <button class="brand-logo p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition cursor-pointer flex items-center justify-center shrink-0 group" data-view="courses" title="ALL ELSE EQUAL">
           <svg class="w-5 h-5 shrink-0 transition-transform duration-200 group-hover:scale-110" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="10" y="2" width="14" height="14" rx="3.5" fill="url(#finLogoGradCyan)" />
-            <path d="M10 10 L16 16 L10 16 Z" fill="#042f2e" opacity="0.45" />
-            <rect x="2" y="10" width="14" height="14" rx="3.5" fill="url(#finLogoGradEmerald)" filter="url(#finLogoShadow)" />
+            <path d="M10 10 L16 16 L10 16 Z" fill="#000000" opacity="0.45" />
+            <rect x="2" y="10" width="14" height="14" rx="3.5" fill="url(#finLogoGradEmerald)" filter="url(#finLogoShadow)" stroke="rgba(0,0,0,0.12)" stroke-width="0.5" />
           </svg>
           <span class="sr-only">ALL ELSE EQUAL</span>
         </button>

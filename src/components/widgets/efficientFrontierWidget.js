@@ -1,6 +1,7 @@
 /**
  * Modern Portfolio Theory (MPT) Efficient Frontier Widget
  * Visualizes the 2-asset risk-return hyperbola, correlation effects, and Sharpe ratios.
+ * Pure Swiss Bauhaus monochrome broadsheet design language.
  */
 
 import { calculateTwoAssetPortfolio, generateEfficientFrontier } from '../../engines/financeMath.js';
@@ -37,12 +38,12 @@ export function renderEfficientFrontierWidget(container, initialProps = {}) {
       <div class="widget-box p-4 rounded-xl bg-slate-900/90 border border-slate-700/80 shadow-2xl text-slate-100">
         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
           <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400">MPT Frontier</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">MPT Frontier</span>
             <h4 class="text-base font-bold text-white">Risk-Return Hyperbola</h4>
           </div>
           <div class="text-right">
             <span class="text-xs text-slate-400">Portfolio Sharpe</span>
-            <p class="text-sm font-bold text-emerald-400">${currentPt.sharpeRatio}</p>
+            <p class="text-sm font-bold text-white font-mono">${currentPt.sharpeRatio}</p>
           </div>
         </div>
 
@@ -53,10 +54,10 @@ export function renderEfficientFrontierWidget(container, initialProps = {}) {
             <line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${padding.top + chartH}" stroke="#475569"/>
 
             <!-- Frontier curve -->
-            <polyline fill="none" stroke="#10b981" stroke-width="3" points="${points}"/>
+            <polyline fill="none" stroke="#ffffff" stroke-width="3" points="${points}"/>
 
             <!-- Current Portfolio Point -->
-            <circle cx="${curX}" cy="${curY}" r="7" fill="#fbbf24" stroke="#78350f" stroke-width="2"/>
+            <circle cx="${curX}" cy="${curY}" r="7" fill="#ffffff" stroke="#000000" stroke-width="2"/>
 
             <!-- Axis Labels -->
             <text x="${width - padding.right}" y="${padding.top + chartH + 18}" fill="#94a3b8" font-size="10" text-anchor="end">Risk (Volatility σ %)</text>
@@ -66,15 +67,15 @@ export function renderEfficientFrontierWidget(container, initialProps = {}) {
           <div class="grid grid-cols-3 gap-2 mt-2 pt-2 border-t border-slate-800 text-center text-xs">
             <div class="bg-slate-800/40 p-1.5 rounded">
               <span class="text-[10px] text-slate-400 block">Stocks / Bonds Mix</span>
-              <span class="font-bold text-slate-200">${Math.round(weightA * 100)}% / ${Math.round((1 - weightA) * 100)}%</span>
+              <span class="font-bold text-slate-200 font-mono">${Math.round(weightA * 100)}% / ${Math.round((1 - weightA) * 100)}%</span>
             </div>
             <div class="bg-slate-800/40 p-1.5 rounded">
               <span class="text-[10px] text-slate-400 block">Expected Return</span>
-              <span class="font-bold text-emerald-400">${currentPt.expectedReturn}%</span>
+              <span class="font-bold text-white font-mono">${currentPt.expectedReturn}%</span>
             </div>
             <div class="bg-slate-800/40 p-1.5 rounded">
               <span class="text-[10px] text-slate-400 block">Portfolio Volatility</span>
-              <span class="font-bold text-amber-400">${currentPt.volatility}%</span>
+              <span class="font-bold text-slate-300 font-mono">${currentPt.volatility}%</span>
             </div>
           </div>
         </div>
@@ -82,17 +83,17 @@ export function renderEfficientFrontierWidget(container, initialProps = {}) {
         <div class="space-y-2 mt-2 text-xs">
           <div>
             <div class="flex justify-between mb-1">
-              <span class="text-slate-300">Correlation (ρ): <strong class="text-emerald-400">${correlation}</strong></span>
+              <span class="text-slate-300">Correlation (ρ): <strong class="text-white font-mono">${correlation}</strong></span>
               <span class="text-slate-400">${correlation < 0 ? 'Negative Correlation (Huge Benefit)' : correlation === 1 ? 'Zero Diversification' : 'Moderate Correlation'}</span>
             </div>
-            <input type="range" min="-1" max="1" step="0.1" value="${correlation}" class="corr-slider w-full accent-emerald-500 cursor-pointer"/>
+            <input type="range" min="-1" max="1" step="0.1" value="${correlation}" class="corr-slider w-full accent-white cursor-pointer"/>
           </div>
 
           <div>
             <div class="flex justify-between mb-1">
-              <span class="text-slate-300">Stock Weight: <strong class="text-amber-400">${Math.round(weightA * 100)}%</strong></span>
+              <span class="text-slate-300">Stock Weight: <strong class="text-white font-mono">${Math.round(weightA * 100)}%</strong></span>
             </div>
-            <input type="range" min="0" max="1" step="0.05" value="${weightA}" class="weight-slider w-full accent-amber-500 cursor-pointer"/>
+            <input type="range" min="0" max="1" step="0.05" value="${weightA}" class="weight-slider w-full accent-white cursor-pointer"/>
           </div>
         </div>
       </div>

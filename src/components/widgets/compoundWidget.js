@@ -1,6 +1,7 @@
 /**
  * Exponential Compounding Simulation Widget
  * Models principal, annual rate, continuous vs annual compounding, and rule of 72.
+ * Pure Swiss Bauhaus monochrome broadsheet design language.
  */
 
 import { calculateCompoundInterest, ruleOf72 } from '../../engines/financeMath.js';
@@ -40,12 +41,12 @@ export function renderCompoundWidget(container, initialProps = {}) {
       <div class="widget-box p-4 rounded-xl bg-slate-900/90 border border-slate-700/80 shadow-2xl text-slate-100">
         <div class="flex items-center justify-between pb-3 border-b border-slate-800">
           <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400">Interactive Simulation</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Interactive Simulation</span>
             <h4 class="text-base font-bold text-white">Exponential Compound Curve</h4>
           </div>
           <div class="text-right">
             <span class="text-xs text-slate-400">Rule of 72 Doubling Time</span>
-            <p class="text-sm font-bold text-amber-400">${dTime === Infinity ? 'Never' : dTime + ' Years'}</p>
+            <p class="text-sm font-bold text-white font-mono">${dTime === Infinity ? 'Never' : dTime + ' Years'}</p>
           </div>
         </div>
 
@@ -58,16 +59,16 @@ export function renderCompoundWidget(container, initialProps = {}) {
             <line x1="${padding.left}" y1="${padding.top + chartH}" x2="${width - padding.right}" y2="${padding.top + chartH}" stroke="#475569"/>
 
             <!-- Area fill for interest -->
-            <polygon points="${padding.left},${padding.top + chartH} ${points} ${width - padding.right},${padding.top + chartH}" fill="rgba(16, 185, 129, 0.15)"/>
+            <polygon points="${padding.left},${padding.top + chartH} ${points} ${width - padding.right},${padding.top + chartH}" fill="rgba(255, 255, 255, 0.08)"/>
 
             <!-- Contributed Line -->
-            <polyline fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4 4" points="${contribPoints}"/>
+            <polyline fill="none" stroke="#71717a" stroke-width="2" stroke-dasharray="4 4" points="${contribPoints}"/>
 
             <!-- Total Balance Curve -->
-            <polyline fill="none" stroke="#10b981" stroke-width="3.5" points="${points}"/>
+            <polyline fill="none" stroke="#ffffff" stroke-width="3.5" points="${points}"/>
 
             <!-- Final marker point -->
-            <circle cx="${width - padding.right}" cy="${padding.top + chartH - (last.balance / maxVal) * chartH}" r="6" fill="#10b981" stroke="#064e3b" stroke-width="2"/>
+            <circle cx="${width - padding.right}" cy="${padding.top + chartH - (last.balance / maxVal) * chartH}" r="6" fill="#ffffff" stroke="#060709" stroke-width="2"/>
 
             <!-- Labels -->
             <text x="${padding.left}" y="${padding.top + 12}" fill="#94a3b8" font-size="11">$${(maxVal / 1000).toFixed(0)}k</text>
@@ -79,15 +80,15 @@ export function renderCompoundWidget(container, initialProps = {}) {
           <div class="grid grid-cols-3 gap-2 mt-2 pt-2 border-t border-slate-800/80 text-center">
             <div class="bg-slate-800/40 p-1.5 rounded">
               <span class="text-[11px] text-slate-400 block">Total Principal</span>
-              <span class="text-sm font-bold text-slate-200">$${last.contributed.toLocaleString()}</span>
+              <span class="text-sm font-bold text-slate-300 font-mono">$${last.contributed.toLocaleString()}</span>
             </div>
             <div class="bg-slate-800/40 p-1.5 rounded">
-              <span class="text-[11px] text-emerald-400 block">Pure Interest</span>
-              <span class="text-sm font-bold text-emerald-400">+$${last.interestEarned.toLocaleString()}</span>
+              <span class="text-[11px] text-slate-400 block">Pure Interest</span>
+              <span class="text-sm font-bold text-white font-mono">+$${last.interestEarned.toLocaleString()}</span>
             </div>
-            <div class="bg-slate-800/40 p-1.5 rounded border border-emerald-500/30">
-              <span class="text-[11px] text-emerald-300 block">Future Value</span>
-              <span class="text-base font-extrabold text-white">$${last.balance.toLocaleString()}</span>
+            <div class="bg-slate-800/40 p-1.5 rounded border border-white/20">
+              <span class="text-[11px] text-slate-300 block">Future Value</span>
+              <span class="text-base font-extrabold text-white font-mono">$${last.balance.toLocaleString()}</span>
             </div>
           </div>
         </div>
@@ -97,25 +98,25 @@ export function renderCompoundWidget(container, initialProps = {}) {
           <div class="space-y-1">
             <div class="flex justify-between">
               <span class="text-slate-400">Annual Return:</span>
-              <strong class="text-emerald-400 font-mono">${rate}%</strong>
+              <strong class="text-white font-mono">${rate}%</strong>
             </div>
-            <input type="range" min="1" max="15" step="0.5" value="${rate}" class="rate-slider w-full accent-emerald-500 cursor-pointer"/>
+            <input type="range" min="1" max="15" step="0.5" value="${rate}" class="rate-slider w-full accent-white cursor-pointer"/>
           </div>
 
           <div class="space-y-1">
             <div class="flex justify-between">
               <span class="text-slate-400">Time Horizon:</span>
-              <strong class="text-cyan-400 font-mono">${years} yrs</strong>
+              <strong class="text-white font-mono">${years} yrs</strong>
             </div>
-            <input type="range" min="5" max="40" step="1" value="${years}" class="years-slider w-full accent-cyan-500 cursor-pointer"/>
+            <input type="range" min="5" max="40" step="1" value="${years}" class="years-slider w-full accent-white cursor-pointer"/>
           </div>
 
           <div class="space-y-1">
             <div class="flex justify-between">
               <span class="text-slate-400">Annual Contrib:</span>
-              <strong class="text-amber-400 font-mono">$${annualContribution}</strong>
+              <strong class="text-white font-mono">$${annualContribution}</strong>
             </div>
-            <input type="range" min="0" max="10000" step="200" value="${annualContribution}" class="contrib-slider w-full accent-amber-500 cursor-pointer"/>
+            <input type="range" min="0" max="10000" step="200" value="${annualContribution}" class="contrib-slider w-full accent-white cursor-pointer"/>
           </div>
         </div>
       </div>

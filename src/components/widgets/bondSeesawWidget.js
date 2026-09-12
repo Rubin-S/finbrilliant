@@ -1,6 +1,7 @@
 /**
  * Bond Yield vs Price Seesaw Visualizer Widget
  * Demonstrates the inverse relationship between market yield and bond valuation.
+ * Pure Swiss Bauhaus monochrome broadsheet design language.
  */
 
 import { calculateBondPrice } from '../../engines/financeMath.js';
@@ -20,12 +21,12 @@ export function renderBondSeesawWidget(container, initialProps = {}) {
       <div class="widget-box p-4 rounded-xl bg-slate-900/90 border border-slate-700/80 shadow-2xl text-slate-100">
         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
           <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-amber-400">Fixed Income Seesaw</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Fixed Income Seesaw</span>
             <h4 class="text-base font-bold text-white">Price vs. Yield Inversion</h4>
           </div>
           <div class="text-right">
             <span class="text-xs text-slate-400">Modified Duration</span>
-            <p class="text-sm font-bold text-cyan-400">${bond.modifiedDuration} yrs</p>
+            <p class="text-sm font-bold text-white font-mono">${bond.modifiedDuration} yrs</p>
           </div>
         </div>
 
@@ -37,12 +38,12 @@ export function renderBondSeesawWidget(container, initialProps = {}) {
             <div class="absolute bottom-0 w-24 h-2 bg-slate-700 rounded z-0"></div>
 
             <!-- Rotating Plank -->
-            <div class="plank absolute w-72 h-3.5 bg-gradient-to-r from-emerald-500 via-amber-500 to-rose-500 rounded-full transition-transform duration-200 z-10 flex items-center justify-between px-3"
+            <div class="plank absolute w-72 h-3.5 bg-white/30 border border-white/60 rounded-full transition-transform duration-200 z-10 flex items-center justify-between px-3"
                  style="transform: rotate(${angle}deg)">
-              <div class="bg-slate-900/90 px-2 py-1 rounded text-[11px] font-bold text-emerald-300 shadow -translate-y-5">
+              <div class="bg-slate-900/95 px-2 py-1 rounded border border-white/20 text-[11px] font-bold text-white shadow -translate-y-5">
                 Price: $${bond.price.toFixed(0)}
               </div>
-              <div class="bg-slate-900/90 px-2 py-1 rounded text-[11px] font-bold text-rose-300 shadow -translate-y-5">
+              <div class="bg-slate-900/95 px-2 py-1 rounded border border-white/20 text-[11px] font-bold text-slate-300 shadow -translate-y-5">
                 Yield: ${yieldRate}%
               </div>
             </div>
@@ -51,13 +52,13 @@ export function renderBondSeesawWidget(container, initialProps = {}) {
           <div class="w-full grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-slate-800 text-center text-xs">
             <div class="bg-slate-800/40 p-2 rounded">
               <span class="text-slate-400 block text-[11px]">Trading Status</span>
-              <span class="font-bold ${priceDiff > 0 ? 'text-emerald-400' : priceDiff < 0 ? 'text-rose-400' : 'text-slate-200'}">
+              <span class="font-bold text-white font-mono">
                 ${priceDiff > 0 ? `Premium (+$${priceDiff})` : priceDiff < 0 ? `Discount (-$${Math.abs(priceDiff)})` : 'Trading at Par ($1000)'}
               </span>
             </div>
             <div class="bg-slate-800/40 p-2 rounded">
               <span class="text-slate-400 block text-[11px]">Sensitivity to +100 bps Hike</span>
-              <span class="font-bold text-rose-400">${bond.estimatedPriceChangePer100Bps}%</span>
+              <span class="font-bold text-slate-300 font-mono">${bond.estimatedPriceChangePer100Bps}%</span>
             </div>
           </div>
         </div>
@@ -65,10 +66,10 @@ export function renderBondSeesawWidget(container, initialProps = {}) {
         <div class="space-y-2 mt-2 text-xs">
           <div>
             <div class="flex justify-between mb-1">
-              <span class="text-slate-300">Market Yield: <strong class="text-amber-400">${yieldRate}%</strong></span>
+              <span class="text-slate-300">Market Yield: <strong class="text-white font-mono">${yieldRate}%</strong></span>
               <span class="text-slate-400">Par Rate = ${coupon}%</span>
             </div>
-            <input type="range" min="0" max="14" step="0.25" value="${yieldRate}" class="yield-slider w-full accent-amber-500 cursor-pointer"/>
+            <input type="range" min="0" max="14" step="0.25" value="${yieldRate}" class="yield-slider w-full accent-white cursor-pointer"/>
           </div>
 
           <div class="grid grid-cols-2 gap-3 pt-1">
@@ -76,13 +77,13 @@ export function renderBondSeesawWidget(container, initialProps = {}) {
               <div class="flex justify-between mb-1 text-[11px]">
                 <span class="text-slate-300">Fixed Coupon: <strong>${coupon}%</strong></span>
               </div>
-              <input type="range" min="1" max="10" step="0.5" value="${coupon}" class="coupon-slider w-full accent-emerald-500 cursor-pointer"/>
+              <input type="range" min="1" max="10" step="0.5" value="${coupon}" class="coupon-slider w-full accent-white cursor-pointer"/>
             </div>
             <div>
               <div class="flex justify-between mb-1 text-[11px]">
                 <span class="text-slate-300">Maturity: <strong>${maturity} yrs</strong></span>
               </div>
-              <input type="range" min="1" max="30" step="1" value="${maturity}" class="maturity-slider w-full accent-cyan-500 cursor-pointer"/>
+              <input type="range" min="1" max="30" step="1" value="${maturity}" class="maturity-slider w-full accent-white cursor-pointer"/>
             </div>
           </div>
         </div>
