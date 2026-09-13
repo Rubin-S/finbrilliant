@@ -8,24 +8,26 @@
  */
 
 import { calculateBondPrice, calculateDCF, blackScholes } from '../../engines/financeMath.js';
+import { renderFinancialWorldWidget } from '../widgets/financialWorldWidget.js';
 
 export function setupInteractiveSandbox(container) {
   const sandboxContent = container.querySelector('#sandbox-content');
+  const tabWorld = container.querySelector('#tab-world');
   const tabRate = container.querySelector('#tab-rate');
   const tabDcf = container.querySelector('#tab-dcf');
   const tabVol = container.querySelector('#tab-vol');
   if (!sandboxContent) return;
 
-  let activeMode = 'rate';
+  let activeMode = tabWorld ? 'world' : 'rate';
 
   const updateTabs = (mode) => {
     activeMode = mode;
-    [tabRate, tabDcf, tabVol].forEach(t => {
+    [tabWorld, tabRate, tabDcf, tabVol].forEach(t => {
       if (!t) return;
       t.className = 'px-4 py-2 rounded-lg text-xs font-mono tracking-wider uppercase border border-white/20 bg-transparent text-slate-400 hover:text-white hover:border-white/40 transition cursor-pointer';
     });
 
-    const activeBtn = mode === 'rate' ? tabRate : (mode === 'dcf' ? tabDcf : tabVol);
+    const activeBtn = mode === 'world' ? tabWorld : (mode === 'rate' ? tabRate : (mode === 'dcf' ? tabDcf : tabVol));
     if (activeBtn) {
       activeBtn.className = 'px-4 py-2 rounded-lg text-xs font-mono tracking-wider uppercase border border-white bg-white text-black font-bold transition cursor-pointer';
     }
@@ -33,7 +35,9 @@ export function setupInteractiveSandbox(container) {
   };
 
   const renderModeContent = () => {
-    if (activeMode === 'rate') {
+    if (activeMode === 'world') {
+      renderFinancialWorldWidget(sandboxContent);
+    } else if (activeMode === 'rate') {
       renderRateMode(sandboxContent);
     } else if (activeMode === 'dcf') {
       renderDcfMode(sandboxContent);
@@ -42,6 +46,7 @@ export function setupInteractiveSandbox(container) {
     }
   };
 
+  if (tabWorld) tabWorld.addEventListener('click', () => updateTabs('world'));
   if (tabRate) tabRate.addEventListener('click', () => updateTabs('rate'));
   if (tabDcf) tabDcf.addEventListener('click', () => updateTabs('dcf'));
   if (tabVol) tabVol.addEventListener('click', () => updateTabs('vol'));

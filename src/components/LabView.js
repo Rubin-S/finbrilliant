@@ -9,14 +9,16 @@ import {
   renderOptionsPayoffWidget,
   renderBondSeesawWidget,
   renderEfficientFrontierWidget,
-  renderDCFWidget
+  renderDCFWidget,
+  renderFinancialWorldWidget
 } from './InteractiveWidgets.js';
 import { soundEngine } from '../audio.js';
 
 export function renderLabView(container, state) {
-  let activeTab = 'orderbook';
+  let activeTab = 'world';
 
   const tabs = [
+    { id: 'world', label: '0. Living Financial World Model' },
     { id: 'orderbook', label: '1. Order Book & Matching Engine' },
     { id: 'options', label: '2. Options & Greeks Visualizer' },
     { id: 'dcf', label: '3. DCF Valuation Model' },
@@ -68,7 +70,8 @@ export function renderLabView(container, state) {
     // Mount active widget
     const mount = container.querySelector('#sandbox-active-mount');
     if (mount) {
-      if (activeTab === 'orderbook') renderOrderBookWidget(mount);
+      if (activeTab === 'world') renderFinancialWorldWidget(mount);
+      else if (activeTab === 'orderbook') renderOrderBookWidget(mount);
       else if (activeTab === 'options') renderOptionsPayoffWidget(mount, { strike: 100, premium: 5, optionType: 'call' });
       else if (activeTab === 'dcf') renderDCFWidget(mount, { cashFlow: 1000, discountRate: 9 });
       else if (activeTab === 'mpt') renderEfficientFrontierWidget(mount, { correlation: 0.1 });

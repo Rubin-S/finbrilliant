@@ -36,15 +36,18 @@ export function getHomePageMarkup(options = {}) {
         </div>
 
         <!-- Mode Tabs -->
-        <div class="flex justify-center gap-2 mb-10">
-          <button id="tab-rate" class="px-4 py-2 rounded-lg text-xs font-mono tracking-wider uppercase border border-white bg-white text-black font-bold transition cursor-pointer">
-            1. Interest Rates & Bonds
+        <div class="flex flex-wrap justify-center gap-2 mb-10">
+          <button id="tab-world" class="px-4 py-2 rounded-lg text-xs font-mono tracking-wider uppercase border border-white bg-white text-black font-bold transition cursor-pointer">
+            1. The Financial World Model (SFC)
+          </button>
+          <button id="tab-rate" class="px-4 py-2 rounded-lg text-xs font-mono tracking-wider uppercase border border-white/20 bg-transparent text-slate-400 hover:text-white hover:border-white/40 transition cursor-pointer">
+            2. Interest Rates & Bonds
           </button>
           <button id="tab-dcf" class="px-4 py-2 rounded-lg text-xs font-mono tracking-wider uppercase border border-white/20 bg-transparent text-slate-400 hover:text-white hover:border-white/40 transition cursor-pointer">
-            2. Cash Flow & DCF Value
+            3. Cash Flow & DCF Value
           </button>
           <button id="tab-vol" class="px-4 py-2 rounded-lg text-xs font-mono tracking-wider uppercase border border-white/20 bg-transparent text-slate-400 hover:text-white hover:border-white/40 transition cursor-pointer">
-            3. Volatility & Greeks
+            4. Volatility & Greeks
           </button>
         </div>
 

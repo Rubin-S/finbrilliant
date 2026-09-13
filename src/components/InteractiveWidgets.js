@@ -12,3 +12,4 @@ export { renderEfficientFrontierWidget } from './widgets/efficientFrontierWidget
 export { renderDCFWidget } from './widgets/dcfWidget.js';
 export { renderDelayCostWidget } from './widgets/delayCostWidget.js';
 export { renderThetaDecayWidget } from './widgets/thetaDecayWidget.js';
+export { renderFinancialWorldWidget } from './widgets/financialWorldWidget.js';
